@@ -1,7 +1,8 @@
 # finalproject
-APCS1 Final Project: MTA Trip Planner Simulator 2017\n
+APCS1 Final Project: MTA Trip Planner Simulator 2017
+
 Collaborators:
-\n
+
 Ida Wang
-\n
+
 Daniel Rozenzaft

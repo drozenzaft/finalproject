@@ -40,13 +40,8 @@ public class Window extends JFrame implements ActionListener{
 
     public void actionPerformed(ActionEvent e){
 	String event = e.getActionCommand();
-	if(event.equals("toC")){
-	    int s = Integer.parseInt(t.getText());
-	    l.setText("Celsius: " + Temperature.FtoC(s));
-	}
-	if(event.equals("toF")){
-	    int s = Integer.parseInt(t.getText());
-	    l.setText("Fahrenheit: " + Temperature.CtoF(s));
+	if(event.equals("calculate")){
+	    route = "DIRECTIONS: added directions";
 	}
     }
     

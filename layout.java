@@ -34,6 +34,8 @@ public class Window extends JFrame implements ActionListener{
 	pane.add(sstation);
 	pane.add(end);
 	pane.add(estation);
+	pane.add(calculate);
+	pane.add(route);
     }
 
     public void actionPerformed(ActionEvent e){

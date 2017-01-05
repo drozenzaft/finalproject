@@ -18,7 +18,7 @@ public class CSVRoute {
 	    String line = "";
 	    int i = 0;
 	    while (dataScan.hasNext()) {
-		line = dataScan.next();
+		line = dataScan.nextLine();
 		temp.add(line);
 		i++;
 	    }
@@ -34,7 +34,7 @@ public class CSVRoute {
 	ArrayList<String[]> temp = new ArrayList<String[]>();
 	String a = "k";
 	String[] p;
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < data.size(); i++) {
 //in python, this would work. but java only accepts a regex argument???
 	    //how to split on commas in java, like in python???
 	    temp.add(data.get(i).split(","));
@@ -60,8 +60,8 @@ public class CSVRoute {
 	ArrayList<String[]> split = csv.loadSplitData();
 	System.out.println(Arrays.toString(csv.loadData().toArray()));
 	System.out.print("[");
-	for (String[] splitLine : split) {
-	    System.out.print(Arrays.toString(splitLine)+",");
+	for (int i = 0; i < split.size(); i++) {
+	    System.out.print(Arrays.toString(split.get(i))+",");
 	}
 	System.out.println("]");
     }

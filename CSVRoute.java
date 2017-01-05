@@ -6,8 +6,10 @@ import java.io.FileNotFoundException;
 
 public class CSVRoute {
     private ArrayList<String> data;
+    private ArrayList<String[]> dataSplit;
     public CSVRoute() {
 	data = loadData();
+	dataSplit = loadSplitData();
     }
     public static ArrayList<String> loadData() {
 	ArrayList<String> temp = new ArrayList<String>();
@@ -15,7 +17,7 @@ public class CSVRoute {
 	    Scanner dataScan = new Scanner(new File("data.csv"));
 	    String line = "";
 	    int i = 0;
-	    while (dataScan.hasNext() && i < 20) {
+	    while (dataScan.hasNext()) {
 		line = dataScan.next();
 		temp.add(line);
 		i++;
@@ -28,14 +30,39 @@ public class CSVRoute {
 	}
 	return temp;
     }
-    public void printData() {
-	for (String line : data) {
-	    System.out.println(line);
+    public ArrayList<String[]> loadSplitData() {
+	ArrayList<String[]> temp = new ArrayList<String[]>();
+	String a = "k";
+	String[] p;
+	for (int i = 0; i < 10; i++) {
+//in python, this would work. but java only accepts a regex argument???
+	    //how to split on commas in java, like in python???
+	    temp.add(data.get(i).split(","));
+	    for (int j = 0; j < temp.get(i).length; j++) {
+		if (a.equals(",") && temp.get(i)[j] == ",") {
+		    p = new String[j+1];
+		    for (int k = 0; k < j; k++) {
+			p[k] = temp.get(i)[k];
+		    }
+		    temp.set(i,p);
+		    break;
+		}
+		else {
+		    a = temp.get(i)[j];
+		}
+	    }
 	}
+	return temp;
     }
     
     public static void main(String[] args) {
 	CSVRoute csv = new CSVRoute();
-	csv.printData();
+	ArrayList<String[]> split = csv.loadSplitData();
+	System.out.println(Arrays.toString(csv.loadData().toArray()));
+	System.out.print("[");
+	for (String[] splitLine : split) {
+	    System.out.print(Arrays.toString(splitLine)+",");
+	}
+	System.out.println("]");
     }
 }

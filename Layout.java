@@ -15,10 +15,13 @@ public class Layout extends JFrame implements ActionListener{
 	this.setSize(1000,800);
 	this.setLocation(100,100);
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+	this.setBackground(Color.darkGray);
 
 	pane = this.getContentPane();
-	pane.setLayout(new FlowLayout());
+	pane.setLayout(new GridBagLayout());
 
+	GridBagConstraints test = new GridBagConstraints();
+	
 	calculate = new JButton("CALCULATE ROUTE");
 	calculate.addActionListener(this);
 	calculate.setActionCommand("calculate");
@@ -30,12 +33,33 @@ public class Layout extends JFrame implements ActionListener{
 	sstation = new JTextField(12);
 	estation = new JTextField(12);
 
+	test.fill = GridBagConstraints.HORIZONTAL;
+	
+	test.gridx = 0;
+	test.gridy = 0;
+	pane.add(start,test);
+
+	test.gridx = 1;
+	test.gridy = 0;
+	pane.add(sstation,test);
+
+	test.fill = GridBagConstraints.HORIZONTAL;
+	test.gridx = 0;
+	test.gridy = 1;
+	pane.add(end,test);
+
+	test.gridx = 1;
+	test.gridy = 1;
+	pane.add(estation,test);
+
+	/*
 	pane.add(start);
 	pane.add(sstation);
 	pane.add(end);
 	pane.add(estation);
 	pane.add(calculate);
 	pane.add(route);
+	*/
     }
 
     public void actionPerformed(ActionEvent e){

@@ -43,7 +43,6 @@ public class Layout extends JFrame implements ActionListener{
 	test.gridy = 0;
 	pane.add(sstation,test);
 
-	test.fill = GridBagConstraints.HORIZONTAL;
 	test.gridx = 0;
 	test.gridy = 1;
 	pane.add(end,test);
@@ -51,6 +50,18 @@ public class Layout extends JFrame implements ActionListener{
 	test.gridx = 1;
 	test.gridy = 1;
 	pane.add(estation,test);
+
+	test.gridx = 2;
+	test.gridy = 0;
+	test.fill = GridBagConstraints.VERTICAL;
+	test.gridheight = 2;
+	pane.add(calculate,test);
+
+	test.gridx = 0;
+	test.gridy = 2;
+	test.fill = GridBagConstraints.HORIZONTAL;
+	test.gridwidth = 3;
+	pane.add(route,test);
 
 	/*
 	pane.add(start);
@@ -65,7 +76,7 @@ public class Layout extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e){
 	String event = e.getActionCommand();
 	if(event.equals("calculate")){
-	    route.setText("DIRECTIONS: added directions");
+	    route.setText("<html>DIRECTIONS:" + "<br>add directions here</html>");
 	}
     }
     

@@ -12,7 +12,7 @@ public class Layout extends JFrame implements ActionListener{
 
     public Layout(){
 	this.setTitle("IAD's Trip Planner");
-	this.setSize(1000,800);
+	this.setSize(800,600);
 	this.setLocation(100,100);
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	this.setBackground(Color.darkGray);

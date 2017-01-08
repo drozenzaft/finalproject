@@ -1,117 +1,129 @@
-1,South Ferry,1,R,,,,,,,,,,
-2,Rector St,1,,,,,,,,,,,
-3,Chambers St,1,2,3,,,,,,,,,
-4,Franklin St,1,,,,,,,,,,,
-5,Canal St,1,,,,,,,,,,,
-6,Houston St,1,,,,,,,,,,,
-7,Christopher St - Sheridan Square,1,,,,,,,,,,,
-8,14th St,1,2,3,F,L,M,,,,,,
-9,18th St,1,,,,,,,,,,,
-10,23rd St,1,,,,,,,,,,,
-11,28th St,1,,,,,,,,,,,
-12,34th St - Penn Station,1,2,3,,,,,,,,,
-13,Times Square-42nd St,1,2,3,7,A,C,E,N,Q,R,S,W
-14,50th St,1,,,,,,,,,,,
-15,59th St-Columbus Circle,1,A,B,C,D,,,,,,,
-16,66th St-Lincoln Center,1,,,,,,,,,,,
-17,72nd St,1,2,3,,,,,,,,,
-18,79th St,1,,,,,,,,,,,
-19,86th St,1,,,,,,,,,,,
-20,96th St,1,2,3,,,,,,,,,
-21,103rd St,1,,,,,,,,,,,
-22,Cathedral Parkway-110th St,1,,,,,,,,,,,
-23,116th St-Columbia University,1,,,,,,,,,,,
-24,125th St,1,,,,,,,,,,,
-25,137th St-City College,1,,,,,,,,,,,
-26,145th St,1,,,,,,,,,,,
-27,157th St,1,,,,,,,,,,,
-28,168th St,1,A,C,,,,,,,,,
-29,181st St,1,,,,,,,,,,,
-30,191st St,1,,,,,,,,,,,
-31,Dyckman St,1,,,,,,,,,,,
-32,207th St,1,,,,,,,,,,,
-33,215th St,1,,,,,,,,,,,
-34,Wall St,2,3,,,,,,,,,,
-35,Fulton St,2,3,4,5,A,C,J,Z,,,,
-36,Park Place,2,3,A,C,E,,,,,,,
-37,110th St-Central Park North,2,3,,,,,,,,,,
-38,116th St,2,3,,,,,,,,,,
-39,125th St,2,3,,,,,,,,,,
-40,135th St,2,3,,,,,,,,,,
-41,145th St,3,,,,,,,,,,,
-42,Harlem-148th St,3,,,,,,,,,,,
-43,Bowling Green,4,5,,,,,,,,,,
-44,Wall St,4,5,,,,,,,,,,
-45,Brooklyn Bridge-City Hall,4,5,6,J,Z,,,,,,,
-46,14 St - Union Square,4,5,6,L,N,Q,R,W,,,,
-47,42nd St - Grand Central,4,5,6,7,S,,,,,,,
-48,Lexington Av - 59 St,4,5,6,N,R,W,,,,,,
-49,86th St,4,5,6,,,,,,,,,
-50,125th St,4,5,6,,,,,,,,,
-51,Canal St,6,J,N,Q,R,Z,,,,,,
-52,Spring St,6,,,,,,,,,,,
-53,Broadway-Lafayette St,6,B,D,F,M,,,,,,,
-54,Astor Place,6,,,,,,,,,,,
-55,23rd St,6,,,,,,,,,,,
-56,28th St,6,,,,,,,,,,,
-57,33rd St,6,,,,,,,,,,,
-58,51 St,6,E,M,,,,,,,,,
-59,68th St-Hunter College,6,,,,,,,,,,,
-60,77th St,6,,,,,,,,,,,
-61,96th St,6,,,,,,,,,,,
-62,103rd St,6,,,,,,,,,,,
-63,110th St,6,,,,,,,,,,,
-64,116th St,6,,,,,,,,,,,
-65,34th St - Hudson Yards,7,,,,,,,,,,,
-66,42nd St - Bryant Park,7,B,D,F,M,,,,,,,
-67,Canal St,A,C,E,,,,,,,,,
-68,West 4th St - Washington Square,A,B,C,D,E,F,M,,,,,
-69,14th St,A,C,E,L,,,,,,,,
-70,34th St - Penn Station,A,C,E,,,,,,,,,
-71,125th St,A,B,C,D,,,,,,,,
-72,145th St,A,B,C,D,,,,,,,,
-73,168th St - Washington Heights,A,C,,,,,,,,,,
-74,175th St,A,,,,,,,,,,,
-75,181st St,A,,,,,,,,,,,
-76,190th St,A,,,,,,,,,,,
-77,Dyckman St-200th St,A,,,,,,,,,,,
-78,Inwood - 207th St,A,,,,,,,,,,,
-79,Grand St,B,D,,,,,,,,,,
-80,34th St - Herald Square,B,D,F,M,N,Q,R,,,,,
-81,47-50th Sts - Rockefeller Center,B,D,F,M,,,,,,,,
-82,7 Avenue,B,D,E,,,,,,,,,
-83,72nd St,B,C,,,,,,,,,,
-84,81st St - Museum of Natural History,B,C,,,,,,,,,,
-85,86th St,B,C,,,,,,,,,,
-86,96th St,B,C,,,,,,,,,,
-87,103rd St,B,C,,,,,,,,,,
-88,Cathedral Parkway-110th St,B,C,,,,,,,,,,
-89,116th St,B,C,,,,,,,,,,
-90,135th St,B,C,,,,,,,,,,
-91,155 St,B,D,,,,,,,,,,
-92,Spring St,C,E,,,,,,,,,,
-93,23rd St,C,E,,,,,,,,,,
-94,50th St,C,E,,,,,,,,,,
-95,155th St,C,,,,,,,,,,,
-96,163rd St - Amsterdam Av,C,,,,,,,,,,,
-97,5 Av - 53 St,E,M,,,,,,,,,,
-98,East Broadway,F,,,,,,,,,,,
-99,Delancey St,F,J,M,Z,,,,,,,,
-100,2nd Av,F,,,,,,,,,,,
-101,23rd St,F,M,,,,,,,,,,
-102,Lexington Av - 63 St,F,Q,,,,,,,,,,
-103,Broad St,J,Z,,,,,,,,,,
-104,Bowery,J,Z,,,,,,,,,,
-105,49th St,N,R,W,,,,,,,,,
-106,57th St - 7 Av,N,Q,R,W,,,,,,,,
-107,5th Av - 59 St,N,R,W,,,,,,,,,
-108,72 St,Q,,,,,,,,,,,
-109,86 St,Q,,,,,,,,,,,
-110,96 St,Q,,,,,,,,,,,
-111,Rector St,R,W,,,,,,,,,,
-112,Cortlandt St,R,W,,,,,,,,,,
-113,City Hall,R,W,,,,,,,,,,
-114,Prince St,R,W,,,,,,,,,,
-115,8th St - NYU,R,W,,,,,,,,,,
-116,23rd St,R,W,,,,,,,,,,
-117,28th St,R,W,,,,,,,,,,
+1,South Ferry
+1A,Whitehall Street
+2,Rector St
+3,Chambers St
+4,Franklin St
+5,Canal St
+6,Houston St
+7,Christopher St - Sheridan Square
+8A,14th St
+8B,6 Av
+9,18th St
+10,23rd St
+11,28th St
+12,34th St - Penn Station
+13A,Times Square - 42nd St
+13B,42 St - Port Authority Bus Terminal
+14,50th St
+15,59th St - Columbus Circle
+16,66th St - Lincoln Center
+17,72nd St
+18,79th St
+19,86th St
+20,96th St
+21,103rd St
+22,Cathedral Parkway - 110th St
+23,116th St - Columbia University
+24,125th St
+25,137th St - City College
+26,145th St
+27,157th St
+28,168th St
+29,181st St
+30,191st St
+31,Dyckman St
+32,207th St
+33,215th St
+34,Wall St
+35,Fulton St
+36A,Park Place
+36B,Chambers St
+36C,World Trade Center
+37,110th St - Central Park North
+38,116th St
+39,125th St
+40,135th St
+41,145th St
+42,Harlem - 148th St
+43,Bowling Green
+44,Wall St
+45A,Brooklyn Bridge - City Hall
+45B,Chambers St
+46,14 St - Union Square
+47,42nd St - Grand Central
+48A,59 St
+48B,Lexington Av - 59 St
+49,86th St
+50,125th St
+51,Canal St
+52,Spring St
+53A,Bleecker St
+53B,Broadway - Lafayette St
+54,Astor Place
+55,23rd St
+56,28th St
+57,33rd St
+58A,51 St
+58B,Lexington Av - 53 St
+59,68th St - Hunter College
+60,77th St
+61,96th St
+62,103rd St
+63,110th St
+64,116th St
+65,34th St - Hudson Yards
+66A,5 Av
+66B,42nd St - Bryant Park
+67,Canal St
+68,West 4th St - Washington Square
+69,14th St
+70,34th St - Penn Station
+71,125th St
+72,145th St
+73,175th St
+74,181st St
+75,190th St
+76,Dyckman St
+77,Inwood - 207th St
+78,Grand St
+79,34th St - Herald Square
+80,47-50th Sts - Rockefeller Center
+81,7 Avenue
+82,72nd St
+83,81st St - Museum of Natural History
+84,86th St
+85,96th St
+86,103rd St
+87,Cathedral Parkway - 110th St
+88,116th St
+89,135th St
+90,155 St
+91,Spring St
+92,23rd St
+93,50th St
+94,155th St
+95,163rd St - Amsterdam Av
+96,5 Av - 53 St
+97,East Broadway
+98,Delancey St
+99,2nd Av
+100,23rd St
+101,57 St
+102,Lexington Av - 63 St
+103,Broad St
+104,Bowery
+105,1 Av
+106,3 Av
+107,49th St
+108,57th St - 7 Av
+109,5th Av - 59 St
+110,72 St
+111,86 St
+112,96 St
+113,Rector St
+114,Cortlandt St
+115,City Hall
+116,Prince St
+117,8th St - NYU
+118,23rd St
+119,28th St

@@ -59,13 +59,8 @@ public class CSVRoute {
 	CSVRoute csv = new CSVRoute();
 	ArrayList<String[]> split = csv.loadSplitData();
 	System.out.println(Arrays.toString(csv.loadData().toArray()));
-	System.out.print("[");
 	for (int i = 0; i < split.size(); i++) {
-	    System.out.print(Arrays.toString(split.get(i)));
-	    if (i < split.size() - 1) {
-		System.out.print(",");
-	    }
+	    System.out.println(Arrays.toString(split.get(i)));
 	}
-	System.out.println("]");
     }
 }

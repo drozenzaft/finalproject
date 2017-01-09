@@ -55,13 +55,16 @@ public class CSVRoute {
 	return temp;
     }
 
-    public static String stationToID(String station){
-	for(int i = 0; i < loadSplitData().size; i++){
-	    if(station.equals(stops.get(i))){
-		return;
+    public String stationToID(String station){
+	ArrayList<String[]> stops = loadSplitData();
+	for(int i = 0; i < stops.size(); i++){
+	    if(station.equals(stops.get(i)[1])){
+		return stops.get(i)[0];
 	    }
 	}
-    
+	return "invalid station name";
+    }    
+
     public static void main(String[] args) {
 	CSVRoute csv = new CSVRoute();
 	ArrayList<String[]> split = csv.loadSplitData();
@@ -69,5 +72,12 @@ public class CSVRoute {
 	for (int i = 0; i < split.size(); i++) {
 	    System.out.println(Arrays.toString(split.get(i)));
 	}
+
+	System.out.println(split.get(0)[1]);
+	System.out.println(split.get(4)[0]);
+
+	System.out.println(csv.stationToID("South Ferry")); //1
+	System.out.println(csv.stationToID("23rd St"));
+	System.out.println(csv.stationToID("28th St")); 
     }
 }

@@ -143,28 +143,8 @@ public class CSVRoute {
 	for (int i = 0; i < splitData.size(); i++) {
 	    System.out.println(Arrays.toString(splitData.get(i)));
 	}
-	
-	System.out.println(splitData.get(0)[1]);
-	System.out.println(splitData.get(4)[0]);
+        */
 
-	System.out.println(csv.stationToID("South Ferry","1")); //1
-	System.out.println(csv.stationToID("23rd St","R"));//118
-	//System.out.println(csv.stationToID("28th St","A"));//NoSuchTrainException
-
-	System.out.println(csv.stationToID("23rd St").get(0)); // 10,55,92,100,118
-	System.out.println(csv.stationToID("23rd St").get(4)); // 118
-	*/
-
-	System.out.println(csv.orderSplit.get(0)[0]);
-	
-	System.out.println(csv.orderSplit.get(0)[1]);
-	System.out.println(Arrays.toString(csv.orderSplit.get(0)));
 	System.out.println(csv.orderSplit.size());
-	System.out.println(csv.orderSplit.get(0).length);
-	//System.out.println(csv.orderSplit.get(csv.orderSplit.size()-2)[0]);
-	/*
-	System.out.println(csv.stops("Chambers St","14th St","1"));
-	System.out.println(csv.stops("Chambers St","14th St","2"));
-	*/
     }
 }

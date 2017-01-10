@@ -98,13 +98,46 @@ public class CSVRoute {
 	    }
 	}
 	throw new NoSuchTrainException("Station not found in Manhattan MTA Station Database!");
-    }    
+    }
+
+    public int stops(String start, String end, String subway){
+	String sID = stationToID(start,subway);
+	String eID = stationToID(end,subway);
+	
+	int stops = 0;
+        int line = -1;
+
+	int sindex = -1;
+	int eindex = -1;
+	
+	int counter = orderSplit.size()-1;
+	while(line==-1 && counter >= 0){
+	    if(subway.equals(orderSplit.get(counter)[0])){
+		line = counter;
+	    }
+	    counter--;
+	}
+
+	while(sindex == -1 && eindex == -1){
+	    for(int i = 0; i < orderSplit.get(line).length; i++){
+		if(sID.equals(orderSplit.get(line)[i])){
+		    sindex = i;
+		}
+		if(eID.equals(orderSplit.get(line)[i])){
+		    eindex = i;
+		}
+	    }
+	}
+	return eindex - sindex;
+	
+    }
 
     public static void main(String[] args) {
 	CSVRoute csv = new CSVRoute();
 	ArrayList<String[]> splitData = csv.orderSplit;
 	//System.out.println(Arrays.toString(splitData.toArray()));
 
+	/*
 	for (int i = 0; i < splitData.size(); i++) {
 	    System.out.println(Arrays.toString(splitData.get(i)));
 	}
@@ -118,5 +151,8 @@ public class CSVRoute {
 
 	System.out.println(csv.stationToID("23rd St").get(0)); // 10,55,92,100,118
 	System.out.println(csv.stationToID("23rd St").get(4)); // 118
+	*/
+
+	System.out.println(csv.stops("Chambers St","14th St","1"));
     }
 }

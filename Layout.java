@@ -76,13 +76,27 @@ public class Layout extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e){
 	String event = e.getActionCommand();
 	if(event.equals("calculate")){
-	    route.setText("<html>DIRECTIONS:" + "<br>add directions here</html>");
+	    CSVRoute csv = new CSVRoute();
+	    String start = sstation.getText();
+	    String end = estation.getText();
+
+	    try{
+		String sID = CSVRoute.stationToID(start).get(0);
+		String eID = CSVRoute.stationToID(end).get(0);
+		
+		route.setText("<html>DIRECTIONS:" +
+			      "<br>[insert directions from " +
+			      start + " to " + end + "]</html>");
+	    }catch(NoSuchTrainException d){
+		route.setText("Please ensure that the station name was typed correctly.");
+	    }
+	    
 	}
     }
     
     public static void main(String[]args){
 	try {
-	// Set System L&F
+	//increases size because I can't see anything on my laptop
 	    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 	} 
 	catch (UnsupportedLookAndFeelException e) {

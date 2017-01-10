@@ -100,6 +100,27 @@ public class CSVRoute {
 	throw new NoSuchTrainException("Station not found in Manhattan MTA Station Database!");
     }    
 
+    public String IDtoStation(String id) {
+	String ans = "";
+	int i = 0;
+        while (i < dataSplit.size() && !dataSplit.get(i)[0].equals(id)) {
+	    i++;
+  	}
+	try {
+	    ans += dataSplit.get(i)[1];
+	}
+	catch (IndexOutOfBoundsException e) {
+	    System.out.println("Invalid Station ID: please insert a valid station ID!");
+	    System.exit(1);
+	}
+	for (int j = 0; j < orderSplit.size(); j++) {
+	    if (arrayContains(orderSplit.get(j),id)) {
+		ans += ", " + orderSplit.get(j)[0] + " Train";
+	    }
+	}
+	return ans;
+    }
+    
     public static void main(String[] args) {
 	CSVRoute csv = new CSVRoute();
 	ArrayList<String[]> splitData = csv.orderSplit;

@@ -109,15 +109,16 @@ public class CSVRoute {
 
 	int sindex = -1;
 	int eindex = -1;
-	
-	int counter = orderSplit.size()-1;
-	while(line==-1 && counter >= 0){
-	    if(subway.equals(orderSplit.get(counter)[0])){
-		line = counter;
-	    }
-	    counter--;
-	}
 
+	while(line == -1){
+	    for(int i = 0; i < 22; i++){
+		//System.out.println(i + ": " + orderSplit.get(i)[0]);	   
+		if(subway.equals(orderSplit.get(i)[0])){
+		    line = i;
+		}
+	    }
+	}
+	
 	while(sindex == -1 && eindex == -1){
 	    for(int i = 0; i < orderSplit.get(line).length; i++){
 		if(sID.equals(orderSplit.get(line)[i])){
@@ -128,6 +129,7 @@ public class CSVRoute {
 		}
 	    }
 	}
+	
 	return eindex - sindex;
 	
     }
@@ -153,6 +155,14 @@ public class CSVRoute {
 	System.out.println(csv.stationToID("23rd St").get(4)); // 118
 	*/
 
+	System.out.println(csv.orderSplit.get(0)[0]);
+	/*
+	System.out.println(csv.orderSplit.get(0)[1]);
+	System.out.println(Arrays.toString(csv.orderSplit.get(0)));
+	System.out.println(csv.orderSplit.size());
+	//System.out.println(csv.orderSplit.get(csv.orderSplit.size()-2)[0]);
+	*/
 	System.out.println(csv.stops("Chambers St","14th St","1"));
+	System.out.println(csv.stops("Chambers St","14th St","2"));
     }
 }

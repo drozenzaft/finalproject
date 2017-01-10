@@ -28,7 +28,7 @@ public class Layout extends JFrame implements ActionListener{
 	
 	start = new JLabel("START");
 	end = new JLabel("END");
-	route = new JLabel("DIRECTIONS: ");
+	route = new JLabel("DIRECTIONS FOR THE 1 TRAIN: ");
 	
 	sstation = new JTextField(12);
 	estation = new JTextField(12);
@@ -81,13 +81,19 @@ public class Layout extends JFrame implements ActionListener{
 	    String end = estation.getText();
 
 	    try{
-		String sID = CSVRoute.stationToID(start).get(0);
-		String eID = CSVRoute.stationToID(end).get(0);
+		String sID = csv.stationToID(start).get(0);
+		String eID = csv.stationToID(end).get(0);
+
+		int stops = csv.stops(start,end,"1");
+		String direction = "uptown";
+		if(stops < 0){
+		    direction = "downtown";
+		    stops = 0 - stops;
+		}
 		
-		route.setText("<html>DIRECTIONS:" +
-			      "<br>[insert directions from " +
-			      start + " to " + end + "]</html>");
-	    }catch(NoSuchTrainException d){
+		route.setText("<html>DIRECTIONS FOR THE 1 TRAIN:<br>" +
+			      "Travel " + stops + " stop(s) " + direction + "</html>");
+	    }catch(IndexOutOfBoundsException d){
 		route.setText("Please ensure that the station name was typed correctly.");
 	    }
 	    

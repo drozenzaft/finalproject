@@ -76,7 +76,11 @@ public class Layout extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e){
 	String event = e.getActionCommand();
 	if(event.equals("calculate")){
-	    route.setText("<html>DIRECTIONS:" + "<br>add directions here</html>");
+	    String start = sstation.getText();
+	    String end = estation.getText();
+	    route.setText("<html>DIRECTIONS:" +
+			  "<br>[insert directions from " +
+			  start + " to " + end + "]</html>");
 	}
     }
     

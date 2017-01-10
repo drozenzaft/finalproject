@@ -80,7 +80,17 @@ public class CSVRoute {
 	}
 	return false;
     }
-    
+
+    public ArrayList<String> stationToID(String station){
+	ArrayList<String> IDs = new ArrayList<String>();
+	for(int i = 0; i < dataSplit.size(); i++){
+	    if(station.equals(dataSplit.get(i)[1])){
+		IDs.add(dataSplit.get(i)[0]);
+	    }
+	}
+	return IDs;
+    }
+		
     public String stationToID(String station, String line){
 	for (int i = 0; i < dataSplit.size(); i++){
 	    if (station.equals(dataSplit.get(i)[1]) && arrayContains(orderSplit.get(lineIndex(line)),dataSplit.get(i)[0])){
@@ -88,7 +98,7 @@ public class CSVRoute {
 	    }
 	}
 	throw new NoSuchTrainException("Station not found in Manhattan MTA Station Database!");
-    }
+    }    
 
     public String IDtoStation(String id) {
 	String ans = "";
@@ -110,11 +120,12 @@ public class CSVRoute {
 	}
 	return ans;
     }
-
+    
     public static void main(String[] args) {
 	CSVRoute csv = new CSVRoute();
 	ArrayList<String[]> splitData = csv.orderSplit;
 	//System.out.println(Arrays.toString(splitData.toArray()));
+
 	for (int i = 0; i < splitData.size(); i++) {
 	    System.out.println(Arrays.toString(splitData.get(i)));
 	}
@@ -125,6 +136,8 @@ public class CSVRoute {
 	System.out.println(csv.stationToID("South Ferry","1")); //1
 	System.out.println(csv.stationToID("23rd St","R"));//118
 	//System.out.println(csv.stationToID("28th St","A"));//NoSuchTrainException
-	System.out.println(csv.IDtoStation("79"));
+
+	System.out.println(csv.stationToID("23rd St").get(0)); // 10,55,92,100,118
+	System.out.println(csv.stationToID("23rd St").get(4)); // 118
     }
 }

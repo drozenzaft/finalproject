@@ -163,58 +163,78 @@ public class CSVRoute {
 	String id1 = "";
 	String idTwo = "";
 	int difference = 0;
+	int tempDifference = 0;
+	int count = 0;
 	int trainIndex = -1;
-	boolean done = false;
 	try {
 	    for (String id : stationToID(stop1)) {
-		if (done) {
-		    break;
-		}
+		//System.out.println(id+"?");
 		for (String id2 : stationToID(stop2)) {
-		    if (done) {
-			break;
-		    }
+		    //System.out.println(id2+"!");
 		    for (int i = 0; i < orderSplit.size(); i++) {
+			if (orderSplit.get(i)[0].equals("4")) {
+			    // System.out.println(id + ", " + id2);
+			}
 			if (arrayContains(orderSplit.get(i),id) && arrayContains(orderSplit.get(i),id2)) {
-			    difference = arrayIndex(orderSplit.get(i),id2) - arrayIndex(orderSplit.get(i),id);
+			    tempDifference = stops(stop1,stop2,orderSplit.get(i)[0]);
+			    // System.out.println(tempDifference + "," + difference);
+			    if (count == 0 || Math.abs(tempDifference) < Math.abs(difference) || Math.abs(tempDifference) == Math.abs(difference) && Math.random() > 0.5) {
+				//System.out.println(i);
+				//	System.out.println("HI!");
+				difference = tempDifference;
+				//	System.out.println(i+"?");
+				trainIndex = i;
+				id1 = id;
+				idTwo = id2;
+			    }
 			    if (difference < 0) {
 				direction = "downtown";
 			    }
 			    else {
 				direction = "uptown";
 			    }
-			    trainIndex = i;
-			    done = true;
-			    id1 = id;
-			    idTwo = id2;
-			    if (done) {
+			    count++;
+			    if (count == 3) {
 				break;
 			    }
 			}
 		    }
-		    if (!done) {
-			throw new StopsNotOnSameLineException("These stations are not served by a single train; please wait for in-station transfers to be supported. Thank you for your cooperation.");
-		    }
-		    ans += "\n1. Start at " + stop1 + ".\n2. Take the " + orderSplit.get(trainIndex)[0] + " train " + Math.abs(difference) + " stops " + direction + ".\n     Intermediate Stops:\n";
-		    int loopDirection = (difference / Math.abs(difference));
-		    if (loopDirection > 0) {
-			int l = 1;
-			while (arrayIndex(orderSplit.get(trainIndex),id1)+l <= arrayIndex(orderSplit.get(trainIndex),idTwo)) {
-			    ans += "        " + IDtoStation(orderSplit.get(trainIndex)[arrayIndex(orderSplit.get(trainIndex),id1)+l]) + "\n";
-			    l++;
-			}
-			}
-		    else {
-			int m = 0;
-			while (arrayIndex(orderSplit.get(trainIndex),id1)+m >= arrayIndex(orderSplit.get(trainIndex),idTwo)) {
-			    System.out.println(orderSplit.get(trainIndex)[arrayIndex(orderSplit.get(trainIndex),id1)-m]);
-			    ans += "        " + IDtoStation(orderSplit.get(trainIndex)[arrayIndex(orderSplit.get(trainIndex),id1)+m]) + "\n";
-			    m--;
-			}
-		    }
-		    ans += "3. Arrive at " + stop2 + ".";
 		}
 	    }
+	    String[] removeTrain = new String[orderSplit.get(trainIndex).length-1];
+	    for (int z = 1; z < orderSplit.get(trainIndex).length; z++) {
+		removeTrain[z-1] = (orderSplit.get(trainIndex)[z]);
+	    }
+	    if (trainIndex == -1) {
+		//	System.out.println(direction);
+		throw new StopsNotOnSameLineException("These stations are not served by a single train; please wait for in-station transfers to be supported. Thank you for your cooperation.");
+	    }
+		    // System.out.println(trainIndex + "!");
+	    String stops = "";
+	    if (Math.abs(difference) == 1) {
+		stops = " stop ";
+	    }
+	    else {
+		stops = " stops ";
+	    }
+	    ans += "\nDirections from " + stop1 + " to " + stop2 + ":";
+	    ans += "\n  1. Start at " + stop1 + ".\n  2. Take the " + orderSplit.get(trainIndex)[0] + " train " + Math.abs(difference) + stops + direction + ".\n       Intermediate Stops:\n";
+	    if (difference > 0) {
+			int l = 1;
+			while (arrayIndex(removeTrain,id1)+l-1 <= arrayIndex(removeTrain,idTwo)-1) {
+			    ans += "          " + IDtoStation(removeTrain[arrayIndex(removeTrain,id1)+l]) + "\n";
+			    l++;
+			}
+		    }
+	    else {
+		int m = -1;
+		while (arrayIndex(removeTrain,id1)+m-1 >= arrayIndex(removeTrain,idTwo)-1) {
+		    //System.out.println(arrayIndex(orderSplit.get(trainIndex),idTwo));
+		    ans += "          " + IDtoStation(removeTrain[arrayIndex(removeTrain,id1)+m]) + "\n";
+		    m--;
+		}
+	    }
+	    ans += "  3. Arrive at " + stop2 + ".";
 	    return ans;
 	}
 	catch (NoSuchTrainException e) {
@@ -241,16 +261,17 @@ public class CSVRoute {
 	System.out.println(csv.stationToID("23rd St").get(4)); // 118
 	*/
 
-	System.out.println(csv.orderSplit.get(0)[0]);
+	//	System.out.println(csv.orderSplit.get(0)[0]);
 	/*
 	System.out.println(csv.orderSplit.get(0)[1]);
 	System.out.println(Arrays.toString(csv.orderSplit.get(0)));
 	System.out.println(csv.orderSplit.size());
 	//System.out.println(csv.orderSplit.get(csv.orderSplit.size()-2)[0]);
 	*/
-	System.out.println(csv.stops("Chambers St","14th St","1"));
-	System.out.println(csv.stops("Chambers St","14th St","2"));
+	System.out.println(csv.directions("14th St","Chambers St"));
+	System.out.println(csv.directions("Chambers St","14th St"));
 	System.out.println(csv.directions("68th St - Hunter College","14 St - Union Square"));
-	System.out.println(csv.directions("14 St - Union Square","68th St - Hunter College"));
+	System.out.println(csv.directions("14 St - Union Square","96th St"));
+	System.out.println(csv.directions("125th St","14 St - Union Square"));
     }
 }

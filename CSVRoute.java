@@ -88,7 +88,13 @@ public class CSVRoute {
 		IDs.add(dataSplit.get(i)[0]);
 	    }
 	}
-	return IDs;
+	if (IDs.size() > 0) {
+	    return IDs;
+	}
+	else {
+	    //System.out.println(Arrays.toString(IDs.toArray()));
+	    throw new NoSuchTrainException("Station not found in Manhattan MTA Station Database!");
+	}
     }
 		
     public String stationToID(String station, String line){
@@ -98,46 +104,153 @@ public class CSVRoute {
 	    }
 	}
 	throw new NoSuchTrainException("Station not found in Manhattan MTA Station Database!");
-    }    
+    }
 
-    public String IDtoStation(String id) {
-	String ans = "";
-	int i = 0;
-        while (i < dataSplit.size() && !dataSplit.get(i)[0].equals(id)) {
-	    i++;
-  	}
-	try {
-	    ans += dataSplit.get(i)[1];
-	}
-	catch (IndexOutOfBoundsException e) {
-	    System.out.println("Invalid Station ID: please insert a valid station ID!");
-	    System.exit(1);
-	}
-	for (int j = 0; j < orderSplit.size(); j++) {
-	    if (arrayContains(orderSplit.get(j),id)) {
-		ans += ", " + orderSplit.get(j)[0] + " Train";
+    public int stops(String start, String end, String subway){
+	String sID = stationToID(start,subway);
+	String eID = stationToID(end,subway);
+	
+	int stops = 0;
+        int line = -1;
+
+	int sindex = -1;
+	int eindex = -1;
+
+	while(line == -1){
+	    for(int i = 0; i < 22; i++){
+		//System.out.println(i + ": " + orderSplit.get(i)[0]);	   
+		if(subway.equals(orderSplit.get(i)[0])){
+		    line = i;
+		}
 	    }
 	}
-	return ans;
+	
+	while(sindex == -1 && eindex == -1){
+	    for(int i = 0; i < orderSplit.get(line).length; i++){
+		if(sID.equals(orderSplit.get(line)[i])){
+		    sindex = i;
+		}
+		if(eID.equals(orderSplit.get(line)[i])){
+		    eindex = i;
+		}
+	    }
+	}
+	
+	return eindex - sindex;
+	
     }
     
+    public int arrayIndex(String[] ary, String goal) {
+	for (int i = 0; i < ary.length; i++) {
+	    if (goal.equals(ary[i])) {
+		return i;
+	    }
+	}
+	throw new IndexOutOfBoundsException("Input string not found in array; no index could be returned");
+    }
+
+    public String IDtoStation(String id) {
+	for (String[] line : dataSplit) {
+	    if (line[0].equals(id)) {
+		return line[1];
+	    }
+	}
+	throw new NoSuchTrainException("No station with the inputted ID was found");
+    }
+    public String directions(String stop1, String stop2) {
+	String ans = "";
+	String direction = "";
+	String id1 = "";
+	String idTwo = "";
+	int difference = 0;
+	int trainIndex = -1;
+	boolean done = false;
+	try {
+	    for (String id : stationToID(stop1)) {
+		if (done) {
+		    break;
+		}
+		for (String id2 : stationToID(stop2)) {
+		    if (done) {
+			break;
+		    }
+		    for (int i = 0; i < orderSplit.size(); i++) {
+			if (arrayContains(orderSplit.get(i),id) && arrayContains(orderSplit.get(i),id2)) {
+			    difference = arrayIndex(orderSplit.get(i),id2) - arrayIndex(orderSplit.get(i),id);
+			    if (difference < 0) {
+				direction = "downtown";
+			    }
+			    else {
+				direction = "uptown";
+			    }
+			    trainIndex = i;
+			    done = true;
+			    id1 = id;
+			    idTwo = id2;
+			    if (done) {
+				break;
+			    }
+			}
+		    }
+		    if (!done) {
+			throw new StopsNotOnSameLineException("These stations are not served by a single train; please wait for in-station transfers to be supported. Thank you for your cooperation.");
+		    }
+		    ans += "\n1. Start at " + stop1 + ".\n2. Take the " + orderSplit.get(trainIndex)[0] + " train " + Math.abs(difference) + " stops " + direction + ".\n     Intermediate Stops:\n";
+		    int loopDirection = (difference / Math.abs(difference));
+		    if (loopDirection > 0) {
+			int l = 1;
+			while (arrayIndex(orderSplit.get(trainIndex),id1)+l <= arrayIndex(orderSplit.get(trainIndex),idTwo)) {
+			    ans += "        " + IDtoStation(orderSplit.get(trainIndex)[arrayIndex(orderSplit.get(trainIndex),id1)+l]) + "\n";
+			    l++;
+			}
+			}
+		    else {
+			int m = 0;
+			while (arrayIndex(orderSplit.get(trainIndex),id1)+m >= arrayIndex(orderSplit.get(trainIndex),idTwo)) {
+			    System.out.println(orderSplit.get(trainIndex)[arrayIndex(orderSplit.get(trainIndex),id1)-m]);
+			    ans += "        " + IDtoStation(orderSplit.get(trainIndex)[arrayIndex(orderSplit.get(trainIndex),id1)+m]) + "\n";
+			    m--;
+			}
+		    }
+		    ans += "3. Arrive at " + stop2 + ".";
+		}
+	    }
+	    return ans;
+	}
+	catch (NoSuchTrainException e) {
+	    throw new NoSuchTrainException("These stations are not served by an MTA station in Manhattan. Please insert a real station.");
+	}
+    }
+	
     public static void main(String[] args) {
 	CSVRoute csv = new CSVRoute();
 	ArrayList<String[]> splitData = csv.orderSplit;
 	//System.out.println(Arrays.toString(splitData.toArray()));
 
+	/*
 	for (int i = 0; i < splitData.size(); i++) {
 	    System.out.println(Arrays.toString(splitData.get(i)));
 	}
 	
 	System.out.println(splitData.get(0)[1]);
 	System.out.println(splitData.get(4)[0]);
-
 	System.out.println(csv.stationToID("South Ferry","1")); //1
 	System.out.println(csv.stationToID("23rd St","R"));//118
 	//System.out.println(csv.stationToID("28th St","A"));//NoSuchTrainException
-
 	System.out.println(csv.stationToID("23rd St").get(0)); // 10,55,92,100,118
 	System.out.println(csv.stationToID("23rd St").get(4)); // 118
+	*/
+
+	System.out.println(csv.orderSplit.get(0)[0]);
+	/*
+	System.out.println(csv.orderSplit.get(0)[1]);
+	System.out.println(Arrays.toString(csv.orderSplit.get(0)));
+	System.out.println(csv.orderSplit.size());
+	//System.out.println(csv.orderSplit.get(csv.orderSplit.size()-2)[0]);
+	*/
+	System.out.println(csv.stops("Chambers St","14th St","1"));
+	System.out.println(csv.stops("Chambers St","14th St","2"));
+	System.out.println(csv.directions("68th St - Hunter College","14 St - Union Square"));
+	System.out.println(csv.directions("14 St - Union Square","68th St - Hunter College"));
     }
 }

@@ -154,6 +154,20 @@ public class CSVRoute {
 	return lines;
     }
 
+    public ArrayList<String> combinedLines(String sID, String eID){
+	ArrayList<String> lines = new ArrayList<String>();
+	ArrayList<String> first = stationToLines(sID);
+	ArrayList<String> last = stationToLines(eID);
+	for(int f = 0; f < first.size(); f++){
+	    for(int l = 0; l < last.size(); l++){
+		if((first.get(f)).equals(last.get(l))){
+		    lines.add(first.get(f));
+		}
+	    }
+	}
+	return lines;
+    }
+
     public static void main(String[] args) {
 	CSVRoute csv = new CSVRoute();
 	ArrayList<String[]> splitData = csv.orderSplit;

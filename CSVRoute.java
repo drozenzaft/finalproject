@@ -133,6 +133,26 @@ public class CSVRoute {
 	return eindex - sindex;
 	
     }
+    
+    public ArrayList<String> stationToLines(String ID){
+	
+	ArrayList<String> lines = new ArrayList<String>();
+	
+	for(int i = 0; i < orderSplit.size(); i++){
+	    
+	    boolean exists = false;
+	    int counter = 0;
+	    
+	    while(!exists && counter < orderSplit.get(i).length){
+		if(ID.equals(orderSplit.get(i)[counter])){
+		    lines.add(orderSplit.get(i)[0]);
+		    exists = true;
+		}
+		counter++;
+	    }
+	}
+	return lines;
+    }
 
     public static void main(String[] args) {
 	CSVRoute csv = new CSVRoute();
@@ -146,5 +166,10 @@ public class CSVRoute {
         */
 
 	System.out.println(csv.orderSplit.size());
+
+	ArrayList<String> a = csv.stationToLines("13A");
+	for(int i = 0; i < a.size(); i++){
+	    System.out.println(a.get(i));
+	}
     }
 }

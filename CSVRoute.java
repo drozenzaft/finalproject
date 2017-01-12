@@ -32,6 +32,7 @@ public class CSVRoute {
 	}
 	return temp;
     }
+    
     public ArrayList<String[]> loadSplitData(String filename) {
 	ArrayList<String[]> temp = new ArrayList<String[]>();
 	ArrayList<String> ary;
@@ -155,9 +156,11 @@ public class CSVRoute {
     }
 
     public ArrayList<String> combinedLines(String sID, String eID){
+	
 	ArrayList<String> lines = new ArrayList<String>();
 	ArrayList<String> first = stationToLines(sID);
 	ArrayList<String> last = stationToLines(eID);
+	
 	for(int f = 0; f < first.size(); f++){
 	    for(int l = 0; l < last.size(); l++){
 		if((first.get(f)).equals(last.get(l))){
@@ -181,9 +184,16 @@ public class CSVRoute {
 
 	System.out.println(csv.orderSplit.size());
 
+	/*
 	ArrayList<String> a = csv.stationToLines("13A");
 	for(int i = 0; i < a.size(); i++){
 	    System.out.println(a.get(i));
+	}
+	*/
+
+	ArrayList<String> b = csv.combinedLines("13A","47");
+	for(int i = 0; i < b.size(); i++){
+	    System.out.println(b.get(i));
 	}
     }
 }

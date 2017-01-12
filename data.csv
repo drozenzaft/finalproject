@@ -1,52 +1,11 @@
 1,South Ferry
-<<<<<<< HEAD
-<<<<<<< HEAD
-1A,Whitehall Street
-=======
 1A,Whitehall St
->>>>>>> daniel
-=======
-1A,Whitehall St
->>>>>>> daniel
 2,Rector St
 3,Chambers St
 4,Franklin St
 5,Canal St
 6,Houston St
 7,Christopher St - Sheridan Square
-<<<<<<< HEAD
-<<<<<<< HEAD
-8A,14th St
-8B,6 Av
-9,18th St
-10,23rd St
-11,28th St
-12,34th St - Penn Station
-13A,Times Square - 42nd St
-13B,42 St - Port Authority Bus Terminal
-14,50th St
-15,59th St - Columbus Circle
-16,66th St - Lincoln Center
-17,72nd St
-18,79th St
-19,86th St
-20,96th St
-21,103rd St
-22,Cathedral Parkway - 110th St
-23,116th St - Columbia University
-24,125th St
-25,137th St - City College
-26,145th St
-27,157th St
-28,168th St
-29,181st St
-30,191st St
-31,Dyckman St
-32,207th St
-33,215th St
-=======
-=======
->>>>>>> daniel
 8A,14 St
 8B,6 Av
 9,18 St
@@ -75,118 +34,32 @@
 31,Dyckman St
 32,207 St
 33,215 St
-<<<<<<< HEAD
->>>>>>> daniel
-=======
->>>>>>> daniel
 34,Wall St
 35,Fulton St
 36A,Park Place
 36B,Chambers St
 36C,World Trade Center
-<<<<<<< HEAD
-<<<<<<< HEAD
-37,110th St - Central Park North
-38,116th St
-39,125th St
-40,135th St
-41,145th St
-42,Harlem - 148th St
-=======
-=======
->>>>>>> daniel
 37,110 St - Central Park North
 38,116 St
 39,125 St
 40,135 St
 41,145 St
 42,Harlem - 148 St
-<<<<<<< HEAD
->>>>>>> daniel
-=======
->>>>>>> daniel
 43,Bowling Green
 44,Wall St
 45A,Brooklyn Bridge - City Hall
 45B,Chambers St
 46,14 St - Union Square
-<<<<<<< HEAD
-<<<<<<< HEAD
-47,42nd St - Grand Central
-48A,59 St
-48B,Lexington Av - 59 St
-49,86th St
-50,125th St
-=======
-=======
->>>>>>> daniel
 47,42 St - Grand Central
 48A,59 St
 48B,Lexington Av - 59 St
 49,86 St
 50,125 St
-<<<<<<< HEAD
->>>>>>> daniel
-=======
->>>>>>> daniel
 51,Canal St
 52,Spring St
 53A,Bleecker St
 53B,Broadway - Lafayette St
 54,Astor Place
-<<<<<<< HEAD
-<<<<<<< HEAD
-55,23rd St
-56,28th St
-57,33rd St
-58A,51 St
-58B,Lexington Av - 53 St
-59,68th St - Hunter College
-60,77th St
-61,96th St
-62,103rd St
-63,110th St
-64,116th St
-65,34th St - Hudson Yards
-66A,5 Av
-66B,42nd St - Bryant Park
-67,Canal St
-68,West 4th St - Washington Square
-69,14th St
-70,34th St - Penn Station
-71,125th St
-72,145th St
-73,175th St
-74,181st St
-75,190th St
-76,Dyckman St
-77,Inwood - 207th St
-78,Grand St
-79,34th St - Herald Square
-80,47-50th Sts - Rockefeller Center
-81,7 Avenue
-82,72nd St
-83,81st St - Museum of Natural History
-84,86th St
-85,96th St
-86,103rd St
-87,Cathedral Parkway - 110th St
-88,116th St
-89,135th St
-90,155 St
-91,Spring St
-92,23rd St
-93,50th St
-94,155th St
-95,163rd St - Amsterdam Av
-96,5 Av - 53 St
-97,East Broadway
-98,Delancey St
-99,2nd Av
-100,23rd St
-=======
-=======
->>>>>>> daniel
 55,23 St
 56,28 St
 57,33 St
@@ -235,31 +108,15 @@
 98,Delancey St
 99,2 Av
 100,23 St
-<<<<<<< HEAD
->>>>>>> daniel
-=======
->>>>>>> daniel
 101,57 St
 102,Lexington Av - 63 St
 103,Broad St
 104,Bowery
 105,1 Av
 106,3 Av
-<<<<<<< HEAD
-<<<<<<< HEAD
-107,49th St
-108,57th St - 7 Av
-109,5th Av - 59 St
-=======
 107,49 St
 108,57 St - 7 Av
 109,5 Av - 59 St
->>>>>>> daniel
-=======
-107,49 St
-108,57 St - 7 Av
-109,5 Av - 59 St
->>>>>>> daniel
 110,72 St
 111,86 St
 112,96 St
@@ -267,18 +124,6 @@
 114,Cortlandt St
 115,City Hall
 116,Prince St
-<<<<<<< HEAD
-<<<<<<< HEAD
-117,8th St - NYU
-118,23rd St
-119,28th St
-=======
 117,8 St - NYU
 118,23 St
 119,28 St
->>>>>>> daniel
-=======
-117,8 St - NYU
-118,23 St
-119,28 St
->>>>>>> daniel

@@ -76,12 +76,6 @@ public class Layout extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e){
 	String event = e.getActionCommand();
 	if(event.equals("calculate")){
-<<<<<<< HEAD
-<<<<<<< HEAD
-	    route.setText("<html>DIRECTIONS:" + "<br>add directions here</html>");
-=======
-=======
->>>>>>> daniel
 	    CSVRoute csv = new CSVRoute();
 	    String start = sstation.getText();
 	    String end = estation.getText();
@@ -102,24 +96,12 @@ public class Layout extends JFrame implements ActionListener{
 		route.setText("Please ensure that the station name was typed correctly.");
 	    }
 	    
-<<<<<<< HEAD
->>>>>>> daniel
-=======
->>>>>>> daniel
 	}
     }
     
     public static void main(String[]args){
 	try {
-<<<<<<< HEAD
-<<<<<<< HEAD
-	// Set System L&F
-=======
 	//increases size because I can't see anything on my laptop
->>>>>>> daniel
-=======
-	//increases size because I can't see anything on my laptop
->>>>>>> daniel
 	    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 	} 
 	catch (UnsupportedLookAndFeelException e) {
@@ -139,3 +121,4 @@ public class Layout extends JFrame implements ActionListener{
 	a.setVisible(true);
     }
 }
+

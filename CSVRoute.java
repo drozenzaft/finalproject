@@ -215,26 +215,36 @@ public class CSVRoute {
 		stops = " stop ";
 	    }
 	    else {
-		stops = " stops ";
+		stops = "</strong> stops <strong>";
 	    }
-	    ans += "\nDirections from " + stop1 + " to " + stop2 + ":";
-	    ans += "\n  1. Start at " + stop1 + ".\n  2. Take the " + orderSplit.get(trainIndex)[0] + " train " + Math.abs(difference) + stops + direction + ".\n       Intermediate Stops:\n";
+	    //ans += "<br>Directions from " + stop1 + " to " + stop2 + ":";
+	    ans += "<br>  1. Start at <strong>" + stop1 + "</strong>.<br>";
+	    if (difference != 0) {
+		ans += "2. Take the <strong>" + orderSplit.get(trainIndex)[0] + "</strong> train <strong>" + Math.abs(difference) + stops + direction + "</strong>.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Intermediate Stops:<br>";
+	    }
 	    if (difference > 0) {
 			int l = 1;
 			while (arrayIndex(removeTrain,id1)+l-1 <= arrayIndex(removeTrain,idTwo)-1) {
-			    ans += "          " + IDtoStation(removeTrain[arrayIndex(removeTrain,id1)+l]) + "\n";
+			    ans += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + IDtoStation(removeTrain[arrayIndex(removeTrain,id1)+l]);
 			    l++;
 			}
 		    }
-	    else {
+	    if (difference < 0) {
 		int m = -1;
 		while (arrayIndex(removeTrain,id1)+m-1 >= arrayIndex(removeTrain,idTwo)-1) {
 		    //System.out.println(arrayIndex(orderSplit.get(trainIndex),idTwo));
-		    ans += "          " + IDtoStation(removeTrain[arrayIndex(removeTrain,id1)+m]) + "\n";
+		    ans += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + IDtoStation(removeTrain[arrayIndex(removeTrain,id1)+m]);
 		    m--;
 		}
 	    }
-	    ans += "  3. Arrive at " + stop2 + ".";
+	    String numStep = "";
+	    if (difference != 0) {
+		numStep += "<br>3";
+	    }
+	    else {
+		numStep += "2";
+	    }
+	    ans += numStep + ". Arrive at <strong>" + stop2 + "</strong>.";
 	    return ans;
 	}
 	catch (NoSuchTrainException e) {

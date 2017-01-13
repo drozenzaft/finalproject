@@ -107,7 +107,10 @@ public class CSVRoute {
 	throw new NoSuchTrainException("Station not found in Manhattan MTA Station Database!");
     }
     
-    public int stops(String sID, String eID, String subway){	
+    public int stops(String sstation, String estation, String subway){
+	String sID = stationToID(sstation,subway);
+	String eID = stationToID(estation,subway);
+	
 	int stops = 0;
 	int sindex = -1;
 	int eindex = -1;

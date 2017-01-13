@@ -37,32 +37,32 @@ public class Layout extends JFrame implements ActionListener{
 	swap.addActionListener(this);
 	swap.setActionCommand("swap");
 
-	/*
         test.gridx = 0;
 	test.gridy = 0;
 	test.fill = GridBagConstraints.VERTICAL;
 	test.gridheight = 2;
 	pane.add(swap,test);
-	*/
+     
 	//test.fill = GridBagConstraints.HORIZONTAL;
 	
-	test.gridx = 0;
+	test.gridx = 1;
 	test.gridy = 0;
+	test.gridheight = 1;
 	pane.add(start,test);
 
-	test.gridx = 1;
+	test.gridx = 2;
 	test.gridy = 0;
 	pane.add(sstation,test);
 
-	test.gridx = 0;
+	test.gridx = 1;
 	test.gridy = 1;
 	pane.add(end,test);
 
-	test.gridx = 1;
+	test.gridx = 2;
 	test.gridy = 1;
 	pane.add(estation,test);
 
-	test.gridx = 2;
+	test.gridx = 3;
 	test.gridy = 0;
 	test.fill = GridBagConstraints.VERTICAL;
 	test.gridheight = 2;
@@ -103,7 +103,11 @@ public class Layout extends JFrame implements ActionListener{
 	    }catch(IndexOutOfBoundsException d){
 		route.setText("No train serves both of these stations. Please ensure that the station name was typed correctly.");
 	    }
-	    
+	}
+	if(event.equals("swap")){
+	    String a = sstation.getText();
+	    sstation.setText(estation.getText());
+	    estation.setText(a);
 	}
     }
     

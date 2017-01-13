@@ -121,3 +121,4 @@ public class Layout extends JFrame implements ActionListener{
 	a.setVisible(true);
     }
 }
+

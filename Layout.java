@@ -6,7 +6,7 @@ public class Layout extends JFrame implements ActionListener{
 
     private Container pane;
 
-    private JButton calculate;
+    private JButton calculate, swap;
     private JLabel start, end, route;
     private JTextField sstation, estation;
 
@@ -15,7 +15,7 @@ public class Layout extends JFrame implements ActionListener{
 	this.setSize(800,600);
 	this.setLocation(100,100);
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-	this.setBackground(Color.darkGray);
+	this.setBackground(Color.black);
 
 	pane = this.getContentPane();
 	pane.setLayout(new GridBagLayout());
@@ -28,12 +28,23 @@ public class Layout extends JFrame implements ActionListener{
 	
 	start = new JLabel("START");
 	end = new JLabel("END");
-	route = new JLabel("DIRECTIONS FOR THE 1 TRAIN: ");
+	route = new JLabel("<html><br>DIRECTIONS:</html> ");
 	
 	sstation = new JTextField(12);
 	estation = new JTextField(12);
 
-	test.fill = GridBagConstraints.HORIZONTAL;
+	swap = new JButton("SWITCH");
+	swap.addActionListener(this);
+	swap.setActionCommand("swap");
+
+	/*
+        test.gridx = 0;
+	test.gridy = 0;
+	test.fill = GridBagConstraints.VERTICAL;
+	test.gridheight = 2;
+	pane.add(swap,test);
+	*/
+	//test.fill = GridBagConstraints.HORIZONTAL;
 	
 	test.gridx = 0;
 	test.gridy = 0;
@@ -77,24 +88,20 @@ public class Layout extends JFrame implements ActionListener{
 	String event = e.getActionCommand();
 	if(event.equals("calculate")){
 	    CSVRoute csv = new CSVRoute();
-	    String start = sstation.getText();
-	    String end = estation.getText();
+	    String start = csv.stationToID(sstation.getText()).get(0);
+	    String end = csv.stationToID(estation.getText()).get(0);
 
 	    try{
-		String sID = csv.stationToID(start).get(0);
-		String eID = csv.stationToID(end).get(0);
-
 		int stops = csv.stops(start,end,"1");
 		String direction = "uptown";
 		if(stops < 0){
 		    direction = "downtown";
 		    stops = 0 - stops;
-		}
-		
-		route.setText("<html>DIRECTIONS FOR THE 1 TRAIN:<br>" +
-			      "Travel " + stops + " stop(s) " + direction + "</html>");
+		    }
+		route.setText("<html><br>DIRECTIONS:<br>" +
+			      "Take the 1 train and travel " + stops + " stops " + direction + "</html>");
 	    }catch(IndexOutOfBoundsException d){
-		route.setText("Please ensure that the station name was typed correctly.");
+		route.setText("No train serves both of these stations. Please ensure that the station name was typed correctly.");
 	    }
 	    
 	}
@@ -122,3 +129,4 @@ public class Layout extends JFrame implements ActionListener{
 	a.setVisible(true);
     }
 }
+

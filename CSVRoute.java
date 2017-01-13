@@ -232,6 +232,7 @@ public class CSVRoute {
 	    if (difference < 0) {
 		int m = -1;
 		while (arrayIndex(removeTrain,id1)+m-1 >= arrayIndex(removeTrain,idTwo)-1) {
+		    //System.out.println(arrayIndex(orderSplit.get(trainIndex),idTwo));
 		    ans += "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + IDtoStation(removeTrain[arrayIndex(removeTrain,id1)+m]);
 		    m--;
 		}

@@ -101,25 +101,20 @@ public class CSVRoute {
 	throw new NoSuchTrainException("Station not found in Manhattan MTA Station Database!");
     }
 
-    public int stops(String start, String end, String subway){
-	String sID = stationToID(start,subway);
-	String eID = stationToID(end,subway);
-	
+    public int stops(String sID, String eID, String subway){	
 	int stops = 0;
-        int line = -1;
-
 	int sindex = -1;
 	int eindex = -1;
+	int line = -1;
 
 	while(line == -1){
 	    for(int i = 0; i < orderSplit.size(); i++){
-		//System.out.println(i + ": " + orderSplit.get(i)[0]);	   
 		if(subway.equals(orderSplit.get(i)[0])){
 		    line = i;
 		}
 	    }
 	}
-	
+
 	while(sindex == -1 && eindex == -1){
 	    for(int i = 0; i < orderSplit.get(line).length; i++){
 		if(sID.equals(orderSplit.get(line)[i])){
@@ -132,7 +127,6 @@ public class CSVRoute {
 	}
 	
 	return eindex - sindex;
-	
     }
     
     public ArrayList<String> stationToLines(String ID){
@@ -140,7 +134,6 @@ public class CSVRoute {
 	ArrayList<String> lines = new ArrayList<String>();
 	
 	for(int i = 0; i < orderSplit.size(); i++){
-	    
 	    boolean exists = false;
 	    int counter = 0;
 	    
@@ -160,7 +153,8 @@ public class CSVRoute {
 	ArrayList<String> lines = new ArrayList<String>();
 	ArrayList<String> first = stationToLines(sID);
 	ArrayList<String> last = stationToLines(eID);
-	
+
+	//could be more efficient but just trying to make it work atm...
 	for(int f = 0; f < first.size(); f++){
 	    for(int l = 0; l < last.size(); l++){
 		if((first.get(f)).equals(last.get(l))){
@@ -170,6 +164,27 @@ public class CSVRoute {
 	}
 	return lines;
     }
+
+    public ArrayList<String> fastestLines(String sID, String eID){
+	ArrayList<String> all = combinedLines(sID,eID);
+	ArrayList<String> fast = new ArrayList<String>();
+	
+	int fastest = stops(sID,eID,all.get(0));
+
+	for(int i = 1; i < all.size(); i++){
+	    if(stops(sID,eID,all.get(i)) < fastest){
+		fast.clear();
+		fast.add(all.get(i));
+		fastest = stops(sID,eID,all.get(i));
+	    }
+	    else if(stops(sID,eID,all.get(i)) == fastest){
+		fast.add(all.get(i));
+	    }
+	}
+
+	return fast;
+    }
+	
 
     public static void main(String[] args) {
 	CSVRoute csv = new CSVRoute();
@@ -182,7 +197,7 @@ public class CSVRoute {
 	}
         */
 
-	System.out.println(csv.orderSplit.size());
+	//System.out.println(csv.orderSplit.size());
 
 	/*
 	ArrayList<String> a = csv.stationToLines("13A");
@@ -191,9 +206,23 @@ public class CSVRoute {
 	}
 	*/
 
-	ArrayList<String> b = csv.combinedLines("13A","47");
+	ArrayList<String> b = csv.combinedLines("13A","47"); //Times Square 42nd and Grand Central
 	for(int i = 0; i < b.size(); i++){
 	    System.out.println(b.get(i));
+	}
+	
+	System.out.println("");
+
+	ArrayList<String> c = csv.combinedLines("3","12");
+	for(int i = 0; i < c.size(); i++){
+	    System.out.println(c.get(i));
+	}
+
+	System.out.println("");
+	
+	ArrayList<String> c2 = csv.fastestLines("3","12");
+	for(int i = 0; i < c2.size(); i++){
+	    System.out.println(c2.get(i));
 	}
     }
 }

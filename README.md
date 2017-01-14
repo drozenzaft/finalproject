@@ -8,13 +8,13 @@ List of Working Features:
 <ul>
 <li>route calculation between two stations on the same line</li>
 <li>GUI to input stations (can reverse their order without retyping)</li>
-</ul><br>
+</ul>
 List of Unresolved Bugs:
 <ul>
 <li>cannot support transfers</li>
 <li>exact String of the station name must be given</li>
 <li>[insert other bugs I cannot remember here...]</li>
-</ul><br>
+</ul>
 Directions:<br>
 Compile both CSVRoute.java and Layout.java. Running Layout will produce a GUI, where the user can input the start and end stations. In case it isn't clear, the "SWITCH" button reverses the start and end stations, and "CALCULATE" produces directions for the route.
 

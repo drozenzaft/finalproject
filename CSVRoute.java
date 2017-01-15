@@ -137,6 +137,35 @@ public class CSVRoute {
 	
 	return eindex - sindex;	
     }
+
+    public int stops2(String sID, String eID, String subway){
+	    
+	int stops = 0;
+	int sindex = -1;
+	int eindex = -1;
+	int line = -1;
+
+	while(line == -1){
+	    for(int i = 0; i < orderSplit.size(); i++){
+		if(subway.equals(orderSplit.get(i)[0])){
+		    line = i;
+		}
+	    }
+	}
+
+	while(sindex == -1 && eindex == -1){
+	    for(int i = 0; i < orderSplit.get(line).length; i++){
+		if(sID.equals(orderSplit.get(line)[i])){
+		    sindex = i;
+		}
+		if(eID.equals(orderSplit.get(line)[i])){
+		    eindex = i;
+		}
+	    }
+	}
+	
+	return eindex - sindex;	
+    }
     
     public int arrayIndex(String[] ary, String goal) {
 	for (int i = 0; i < ary.length; i++) {
@@ -250,7 +279,9 @@ public class CSVRoute {
 	    throw new NoSuchTrainException("These stations are not served by an MTA station in Manhattan. Please insert a real station.");
 	}
     }
-    
+
+    // input: ID of a single station
+    // returns an ArrayList of all the lines that stop at that station
     public ArrayList<String> stationToLines(String ID){
 	
 	ArrayList<String> lines = new ArrayList<String>();
@@ -270,13 +301,16 @@ public class CSVRoute {
 	return lines;
     }
 
+    // input: the IDs of a start and end station
+    // returns an ArrayList of the lines that have both stations
+    // ie. combinedLines(14 St,Chambers St) returns 1,2,3
     public ArrayList<String> combinedLines(String sID, String eID){
 	
 	ArrayList<String> lines = new ArrayList<String>();
 	ArrayList<String> first = stationToLines(sID);
 	ArrayList<String> last = stationToLines(eID);
 
-	//could be more efficient but just trying to make it work atm...
+	//could be more efficient but just trying to make it work ...
 	for(int f = 0; f < first.size(); f++){
 	    for(int l = 0; l < last.size(); l++){
 		if((first.get(f)).equals(last.get(l))){
@@ -287,24 +321,25 @@ public class CSVRoute {
 	return lines;
     }
 
+    // combinedLines, except it return the lines with the least number of stops in between, and that number 
+    // ie. fastestLines(14 St,Chambers St) returns 2(stops),2,3
     public ArrayList<String> fastestLines(String sID, String eID){
 	ArrayList<String> all = combinedLines(sID,eID);
 	ArrayList<String> fast = new ArrayList<String>();
 	
-	int fastest = stops(sID,eID,all.get(0));
+	int fastest = stops2(sID,eID,all.get(0));
 
 	for(int i = 1; i < all.size(); i++){
-	    if(stops(sID,eID,all.get(i)) < fastest){
+	    if(stops2(sID,eID,all.get(i)) < fastest){
 		fast.clear();
+		fastest = stops2(sID,eID,all.get(i));
+		fast.add(fastest);
 		fast.add(all.get(i));
-		fastest = stops(sID,eID,all.get(i));
 	    }
-	    else if(stops(sID,eID,all.get(i)) == fastest){
+	    else if(stops2(sID,eID,all.get(i)) == fastest){
 		fast.add(all.get(i));
 	    }
 	}
-
-	return fast;
     }
     
     public static void main(String[] args) {

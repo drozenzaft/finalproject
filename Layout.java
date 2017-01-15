@@ -36,41 +36,49 @@ public class Layout extends JFrame implements ActionListener{
 	swap = new JButton("SWITCH");
 	swap.addActionListener(this);
 	swap.setActionCommand("swap");
-
-        test.gridx = 0;
-	test.gridy = 0;
-	test.fill = GridBagConstraints.VERTICAL;
-	test.gridheight = 2;
-	pane.add(swap,test);
      
 	//test.fill = GridBagConstraints.HORIZONTAL;
 	
-	test.gridx = 1;
+	test.gridx = 0;
 	test.gridy = 0;
-	test.gridheight = 1;
 	pane.add(start,test);
+	test.insets = new Insets(0,0,0,10);
 
-	test.gridx = 2;
+	test.gridx = 1;
 	test.gridy = 0;
 	pane.add(sstation,test);
 
-	test.gridx = 1;
+	test.gridx = 0;
 	test.gridy = 1;
 	pane.add(end,test);
+	test.insets = new Insets(0,0,0,10);
 
-	test.gridx = 2;
+	test.gridx = 1;
 	test.gridy = 1;
 	pane.add(estation,test);
-
-	test.gridx = 3;
+	
+        test.gridx = 2;
 	test.gridy = 0;
 	test.fill = GridBagConstraints.VERTICAL;
+	test.insets = new Insets(0,30,0,0);
 	test.gridheight = 2;
-	pane.add(calculate,test);
+	test.gridwidth = 1;
+	pane.add(swap,test);
 
 	test.gridx = 0;
 	test.gridy = 2;
 	test.fill = GridBagConstraints.HORIZONTAL;
+	test.insets = new Insets(30,0,0,0);
+	test.ipady = 40;
+	test.gridheight = 2;
+        test.gridwidth = 3;
+	pane.add(calculate,test);
+
+	test.gridx = 0;
+	test.gridy = 4;
+	test.fill = GridBagConstraints.HORIZONTAL;
+	test.insets = new Insets(0,0,0,0);
+	test.gridheight = 1;
 	test.gridwidth = 3;
 	pane.add(route,test);
 

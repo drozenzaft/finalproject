@@ -210,7 +210,7 @@ public class CSVRoute {
 	int distance = 1000000;
 	int currentDistance = 0;
 	int trainIndex = -1;
-	//second 1 of this method: this 
+	//section 1 of the method: these three loops set each of the variables that section 2, the printer, needs in order to print proper directions and throw exceptions when improper station names are inputted.
 	try {
 	    //these first two outer loops use the single-parameter stationToID method, which returns an arraylist of all the IDs of stations with the name of that stop. this allows them to check each "23 St", "72 St", or any repeat station name; otherwise, only one instance of, say, "23 St" would be checked. these two loops are necessary because if the train(s) that stop at that instance do not happen stop at the second stop, then this directions method would not find a route, and the program would rarely work.
 	    for (String id : stationToID(stop1)) {
@@ -331,13 +331,14 @@ public class CSVRoute {
 	    if(stops2(sID,eID,all.get(i)) < fastest){
 		fast.clear();
 		fastest = stops2(sID,eID,all.get(i));
-		fast.add(fastest);
+		fast.add(""+fastest);
 		fast.add(all.get(i));
 	    }
 	    else if(stops2(sID,eID,all.get(i)) == fastest){
 		fast.add(all.get(i));
 	    }
 	}
+	return fast;
     }
     
     public static void main(String[] args) {

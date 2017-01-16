@@ -14,7 +14,7 @@ List of Unresolved Bugs:
 <li>cannot actually support transfers... (really glitchy, and still not incorporated in the GUI)</li>
 <li>exact String of the station name must be given for calculations to work</li>
 <li>asking for a route when there is no input in the GUI spews a bunch of error messages in the terminal (doesn't really matter if you only look at the GUI though)</li>
-<li>duplicate station names are not clarified, so a station such as "14 St" is typed, then the program will assume it is the first "14 St" that shows up in the data file</li>
+<li>duplicate station names are not clarified, so if a station such as "14 St" is typed, then the program will assume it is the first "14 St" that shows up in the data file</li>
 <li>[insert other bugs I cannot remember here...]</li>
 </ul><br>
 Directions:<br>

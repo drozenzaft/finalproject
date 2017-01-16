@@ -13,6 +13,19 @@ public class CSVRoute {
 	order = loadData("stop order.csv");
 	orderSplit = loadSplitData("stop order.csv");
     }
+    //String[][] of all the stations with more than 1 line - first element of each String[] is the station ID
+    public String[][] transfers(){
+	String[][] transfers = new String[dataSplit.size()][];
+	int length = 0;
+	for(int i = 0; i < dataSplit.size(); i++){
+	    if(stationToLines3(dataSplit.get(i)[0]).length > 2){
+		transfers[length] = stationToLines3(dataSplit.get(i)[0]);
+		length++;
+	    }
+	}
+	return Arrays.copyOf(transfers,length);
+    }
+    
     public static ArrayList<String> loadData(String filename) {
 	ArrayList<String> temp = new ArrayList<String>();
 	try {
@@ -130,8 +143,7 @@ public class CSVRoute {
 	return eindex - sindex;	
     }
 
-    public int stops2(String sID, String eID, String subway){
-	    
+    public int stops2(String sID, String eID, String subway){   
 	int stops = 0;
 	int sindex = -1;
 	int eindex = -1;
@@ -265,8 +277,7 @@ public class CSVRoute {
 
     // input: ID of a single station
     // returns an ArrayList of all the lines that stop at that station
-    public ArrayList<String> stationToLines(String ID){
-	
+    public ArrayList<String> stationToLines(String ID){	
 	ArrayList<String> lines = new ArrayList<String>();
 	
 	for(int i = 0; i < orderSplit.size(); i++){
@@ -283,17 +294,35 @@ public class CSVRoute {
 	}
 	return lines;
     }
-    
+    //int[] of the line indexes in orderSplit
     public int[] stationToLines2(String ID){
 	int[] lines = new int[10];
 	int length = 0;
 	for(int i = 0; i < orderSplit.size(); i++){
-	    boolean exists = false;
 	    int counter = 0;
-	    
+	    boolean exists = false;
 	    while(!exists && counter < orderSplit.get(i).length){
 		if(ID.equals(orderSplit.get(i)[counter])){
 		    lines[length] = i;
+		    length++;
+		    exists = true;
+		}
+		counter++;
+	    }
+	}
+	return Arrays.copyOf(lines,length);
+    }
+    //String[] of the line names in orderSplit; first element is stationID
+    public String[] stationToLines3(String ID){
+	String[] lines = new String[10];
+	lines[0] = ID;
+	int length = 1;
+	for(int i = 0; i < orderSplit.size(); i++){
+	    boolean exists = false;
+	    int counter = 0;
+	    while(!exists && counter < orderSplit.get(i).length){
+		if(ID.equals(orderSplit.get(i)[counter])){
+		    lines[length] = orderSplit.get(i)[0];
 		    length++;
 		    exists = true;
 		}
@@ -386,7 +415,7 @@ public class CSVRoute {
     
     public static void main(String[] args) {
 	CSVRoute csv = new CSVRoute();
-	
+	/*
 	System.out.println(csv.directions("Chambers St","96 St"));
 	
 	ArrayList<String> b = csv.combinedLines("13A","47"); //Times Square 42nd and Grand Central
@@ -416,10 +445,18 @@ public class CSVRoute {
 	}
 
 	System.out.println("");
-
+	*/
 	System.out.println(csv.nextTransfer("47","3"));
 	System.out.println(csv.directions2("47","3") + "\n");
 	System.out.println(csv.directions2("8A","47") + "\n");
-	System.out.println(csv.directions2("60","107"));
+	System.out.println(csv.directions2("60","107") + "\n");
+
+	String[][] transfers = csv.transfers();
+	ArrayList<String[]> stations = csv.dataSplit;
+	System.out.println(stations.size());
+	System.out.println(transfers.length);
+	for(int i = 0; i < transfers.length; i++){
+	    System.out.println(csv.IDtoStation(transfers[i][0]));
+	}
     }
 }

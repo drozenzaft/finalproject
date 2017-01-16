@@ -114,15 +114,7 @@ public class CSVRoute {
 	int stops = 0;
 	int sindex = -1;
 	int eindex = -1;
-	int line = -1;
-
-	while(line == -1){
-	    for(int i = 0; i < orderSplit.size(); i++){
-		if(subway.equals(orderSplit.get(i)[0])){
-		    line = i;
-		}
-	    }
-	}
+	int line = lineIndex(subway);
 
 	while(sindex == -1 && eindex == -1){
 	    for(int i = 0; i < orderSplit.get(line).length; i++){
@@ -143,15 +135,7 @@ public class CSVRoute {
 	int stops = 0;
 	int sindex = -1;
 	int eindex = -1;
-	int line = -1;
-
-	while(line == -1){
-	    for(int i = 0; i < orderSplit.size(); i++){
-		if(subway.equals(orderSplit.get(i)[0])){
-		    line = i;
-		}
-	    }
-	}
+	int line = lineIndex(subway);
 
 	while(sindex == -1 && eindex == -1){
 	    for(int i = 0; i < orderSplit.get(line).length; i++){
@@ -186,7 +170,7 @@ public class CSVRoute {
     }
 
     public String direction(String stop1, String stop2,String subway) {
-	int dist = stops(stop1, stop2,subway);
+	int dist = stops(stop1,stop2,subway);
 	if (dist < 0) {
 	    return "downtown";
 	}
@@ -202,6 +186,7 @@ public class CSVRoute {
 	}
 	return temp;
     }
+    
     public String directions(String stop1, String stop2) {
 	String ans = "";
 	String direction = "";
@@ -325,9 +310,9 @@ public class CSVRoute {
 	ArrayList<String> all = combinedLines(sID,eID);
 	ArrayList<String> fast = new ArrayList<String>();
 	
-	int fastest = stops2(sID,eID,all.get(0));
+	int fastest = 100;
 
-	for(int i = 1; i < all.size(); i++){
+	for(int i = 0; i < all.size(); i++){
 	    if(stops2(sID,eID,all.get(i)) < fastest){
 		fast.clear();
 		fastest = stops2(sID,eID,all.get(i));

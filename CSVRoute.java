@@ -400,15 +400,8 @@ public class CSVRoute {
         int[] options = stationToLines2(sID);
 	for(int l = 0; l < options.length; l++){
 	    for(int s = 1; s < orderSplit.get(options[l]).length; s++){
-		if(combinedLines(eID,orderSplit.get(options[l])[s]).size() > 0){
+		if (combinedLines(eID,orderSplit.get(options[l])[s]).size() > 0 && (ans.length() == 0 || (Math.abs(stops2(orderSplit.get(options[l])[s],eID,orderSplit.get(options[l])[0])) + Math.abs(stops2(orderSplit.get(options[l])[s],sID,orderSplit.get(options[l])[0]))) < Math.abs(stops2(ans,eID,orderSplit.get(options[l])[0])) + Math.abs(stops2(orderSplit.get(options[l])[s],sID,orderSplit.get(options[l])[0])))) {
 		    ans = orderSplit.get(options[l])[s];
-		}
-	    }
-	    for (int t = orderSplit.get(options[l]).length-1; t > 0; t--) {
-		if (combinedLines(eID,orderSplit.get(options[l])[t]).size() > 0) {
-		    if (stops2(orderSplit.get(options[l])[t],eID,orderSplit.get(options[l])[0]) < stops2(ans,eID,orderSplit.get(options[l])[0]) || ans.length() == 0) {
-			ans = orderSplit.get(options[l])[t];
-		    }
 		}
 	    }
 	}

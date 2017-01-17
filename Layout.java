@@ -101,7 +101,7 @@ public class Layout extends JFrame implements ActionListener{
 
 	    try{
 		route.setText("<html><br>DIRECTIONS:<br>" +
-			      csv.directions(start,end)+"</html>");
+			      csv.directions2(start,end)+"</html>");
 	    }catch(IndexOutOfBoundsException d){
 		route.setText("No train serves both of these stations. Please ensure that the station name was typed correctly.");
 	    }

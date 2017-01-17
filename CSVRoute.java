@@ -406,7 +406,7 @@ public class CSVRoute {
 	    }
 	    for (int t = orderSplit.get(options[l]).length-1; t > 0; t--) {
 		if (combinedLines(eID,orderSplit.get(options[l])[t]).size() > 0) {
-		    if (stops2(orderSplit.get(options[l])[t],eID,orderSplit.get(options[l])[0])+stops2( < stops2(ans,eID,orderSplit.get(options[l])[0]) || ans.length() == 0) {
+		    if (stops2(orderSplit.get(options[l])[t],eID,orderSplit.get(options[l])[0]) < stops2(ans,eID,orderSplit.get(options[l])[0]) || ans.length() == 0) {
 			ans = orderSplit.get(options[l])[t];
 		    }
 		}

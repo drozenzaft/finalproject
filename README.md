@@ -7,15 +7,18 @@ Ever wanted a downgraded version of Google Maps? Well look no further, because n
 List of Working Features:
 <ul>
 <li>route calculation between two stations on the same line</li>
-<li>GUI to input stations (can reverse their order without retyping)</li>
+<li>GUI to input stations (see unresolved bugs)</li>
+<li>reverse button to switch stations</li>
+<li>GUI scroll bar to see directions that may extend over the container without resizing (see unresolved bugs)</li>
 </ul>
 List of Unresolved Bugs:
 <ul>
-<li>cannot actually support transfers... (really glitchy, and still not incorporated in the GUI)</li>
-<li>exact String of the station name must be given for calculations to work</li>
+<li>really glitchy transfers; some test cases work, others do not</li>
+<li>for the transfers that do work, some of the directions are extremely counter-intuitive and unnecessary</li>
+<li>exact station name must be given (see data.csv for the names)</li>
 <li>asking for a route when there is no input in the GUI spews a bunch of error messages in the terminal (doesn't really matter if you only look at the GUI though)</li>
 <li>duplicate station names are not clarified, so if a station such as "14 St" is typed, then the program will assume it is the first "14 St" that shows up in the data file</li>
-<li>[insert other bugs I cannot remember here...]</li>
+<li>GUI label for directions won't resize because of the scroll bar unless there is enough room for the entire text to fit</li>
 </ul><br>
 Directions:<br>
 Both CSVRoute.java and Layout.java must be compiled. Running Layout will produce a GUI, where the user can input the start and end stations. In case it isn't clear, the "SWITCH" button reverses the start and end stations, and "CALCULATE" produces directions for the route.

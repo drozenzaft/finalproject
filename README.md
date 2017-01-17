@@ -10,17 +10,18 @@ List of Working Features:
 <li>GUI to input stations (see unresolved bugs)</li>
 <li>reverse button to switch stations</li>
 <li>GUI scroll bar to see directions that may extend over the container without resizing (see unresolved bugs)</li>
+<li>SOME transfers work; it seems like transfers between stops without repeat names usually work fine</li>
 </ul>
 List of Unresolved Bugs:
 <ul>
-<li>really glitchy transfers; some test cases work, others do not</li>
-<li>for the transfers that do work, some of the directions are extremely counter-intuitive and unnecessary</li>
-<li>exact station name must be given (see data.csv for the names)</li>
+<li>transfers and regular directions for stations with repeat names (ex: 23 St) or stations with multiple names (ex: Park Place, World Trade Center, and Chambers St) don't always work>/li>
+<li>for a few of the transfers that do work, some of the directions give very long routes instead of the simplest ones</li>
+<li>exact station name must be given (cat data.csv for the names)</li>
 <li>asking for a route when there is no input in the GUI spews a bunch of error messages in the terminal (doesn't really matter if you only look at the GUI though)</li>
 <li>duplicate station names are not clarified, so if a station such as "14 St" is typed, then the program will assume it is the first "14 St" that shows up in the data file</li>
 <li>GUI label for directions won't resize because of the scroll bar unless there is enough room for the entire text to fit</li>
 </ul><br>
 Directions:<br>
-Both CSVRoute.java and Layout.java must be compiled. Running Layout will produce a GUI, where the user can input the start and end stations. In case it isn't clear, the "SWITCH" button reverses the start and end stations, and "CALCULATE" produces directions for the route.
+Both Layout.java must be compiled. Running Layout will produce a GUI (resize as needed), where the user can input the start and end stations (for a list of station names [which need to be exactly as they are in the data file], type "cat data.csv" in the terminal). In case it isn't clear, the "SWITCH" button reverses the start and end stations, and "CALCULATE" produces directions for the route.
 
 

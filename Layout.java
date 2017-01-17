@@ -13,6 +13,7 @@ public class Layout extends JFrame implements ActionListener{
     public Layout(){
 	this.setTitle("IAD's Trip Planner");
 	this.setSize(800,600);
+	this.setMinimumSize(new Dimension(700,500));
 	this.setLocation(100,100);
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	this.setBackground(Color.black);
@@ -47,6 +48,7 @@ public class Layout extends JFrame implements ActionListener{
 	test.gridx = 1;
 	test.gridy = 0;
 	pane.add(sstation,test);
+	sstation.setMinimumSize(new Dimension(sstation.getPreferredSize()));
 
 	test.gridx = 0;
 	test.gridy = 1;
@@ -56,6 +58,7 @@ public class Layout extends JFrame implements ActionListener{
 	test.gridx = 1;
 	test.gridy = 1;
 	pane.add(estation,test);
+	estation.setMinimumSize(new Dimension(estation.getPreferredSize()));
 	
         test.gridx = 2;
 	test.gridy = 0;
@@ -68,7 +71,7 @@ public class Layout extends JFrame implements ActionListener{
 	test.gridx = 0;
 	test.gridy = 2;
 	test.fill = GridBagConstraints.HORIZONTAL;
-	test.insets = new Insets(30,0,0,0);
+	test.insets = new Insets(30,0,30,0);
 	test.ipady = 40;
 	test.gridheight = 2;
         test.gridwidth = 3;
@@ -84,6 +87,7 @@ public class Layout extends JFrame implements ActionListener{
 
 	JScrollPane scroll = new JScrollPane(route);
 	pane.add(scroll,test);
+	scroll.setMinimumSize(new Dimension(scroll.getPreferredSize()));
 
 	/*
 	pane.add(start);
@@ -117,6 +121,7 @@ public class Layout extends JFrame implements ActionListener{
     }
     
     public static void main(String[]args){
+	/*
 	try {
 	//increases size because I can't see anything on my laptop
 	    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -133,6 +138,7 @@ public class Layout extends JFrame implements ActionListener{
 	catch (IllegalAccessException e) {
 	    // handle exception
 	}
+	*/
 	Layout a = new Layout();
 	a.setVisible(true);
     }

@@ -82,6 +82,9 @@ public class Layout extends JFrame implements ActionListener{
 	test.gridwidth = 3;
 	pane.add(route,test);
 
+	JScrollPane scroll = new JScrollPane(route);
+	pane.add(scroll,test);
+
 	/*
 	pane.add(start);
 	pane.add(sstation);
@@ -130,7 +133,6 @@ public class Layout extends JFrame implements ActionListener{
 	catch (IllegalAccessException e) {
 	    // handle exception
 	}
-
 	Layout a = new Layout();
 	a.setVisible(true);
     }

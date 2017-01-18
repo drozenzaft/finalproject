@@ -29,7 +29,7 @@ public class Layout extends JFrame implements ActionListener{
 	
 	start = new JLabel("START");
 	end = new JLabel("END");
-	route = new JLabel("<html><br>DIRECTIONS:</html> ");
+	route = new JLabel("<html>DIRECTIONS:</html> ");
 	
 	sstation = new JTextField(12);
 	estation = new JTextField(12);
@@ -85,7 +85,7 @@ public class Layout extends JFrame implements ActionListener{
 	test.gridwidth = 3;
 	pane.add(route,test);
 
-	JScrollPane scroll = new JScrollPane(route);
+	JScrollPane scroll = new JScrollPane(route,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 	pane.add(scroll,test);
 	scroll.setMinimumSize(new Dimension(scroll.getPreferredSize()));
 
@@ -107,10 +107,19 @@ public class Layout extends JFrame implements ActionListener{
 	    String end = estation.getText();
 
 	    try{
-		route.setText("<html><br>DIRECTIONS:<br>" +
-			      csv.directions2(start,end)+"</html>");
+		if(csv.combinedLines(start,end).size() == 0){
+		    route.setText("<html>DIRECTIONS:<br>" +
+				  csv.directions(start,end,false));
+		}else{
+		    route.setText("<html>DIRECTIONS:<br>" +
+				  csv.directions2(start,end)+"</html>");
+		}
 	    }catch(IndexOutOfBoundsException d){
-		route.setText("No train serves both of these stations. Please ensure that the station name was typed correctly.");
+		route.setText("<html>No train serves both of these stations.<br>Please ensure that the station name was typed correctly.<html>");
+	    }catch(NoSuchTrainException n){
+		route.setText("<html>No train serves both of these stations.<br>Please ensure that the station name was typed correctly.<html>");
+	    }catch(StopsNotOnSameLineException l){
+		route.setText("<html>These stations are not served by a single train;<br>please wait for more in-station transfers to be available.<br>Thank you for your cooperation.<html>");
 	    }
 	}
 	if(event.equals("swap")){

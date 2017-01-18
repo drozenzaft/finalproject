@@ -223,6 +223,85 @@ public class CSVRoute {
 	}
 	return temp;
     }
+
+ public String directions(String stop1, String stop2) {
+	String ans = "";
+	String direction = "";
+	String id1 = "";
+	String idTwo = "";
+	int distance = 1000000;
+	int currentDistance = 0;
+	int trainIndex = -1;
+	//section 1 of the method: these three loops set each of the variables that section 2, the printer, needs in order to print proper directions and throw exceptions when improper station names are inputted.
+	try {
+	    //these first two outer loops use the single-parameter stationToID method, which returns an arraylist of all the IDs of stations with the name of that stop. this allows them to check each "23 St", "72 St", or any repeat station name; otherwise, only one instance of, say, "23 St" would be checked. these two loops are necessary because if the train(s) that stop at that instance do not happen stop at the second stop, then this directions method would not find a route, and the program would rarely work.
+	    for (String id : stationToID(stop1)) {
+		for (String id2 : stationToID(stop2)) {
+		    for (int i = 0; i < orderSplit.size(); i++) {
+			if (arrayContains(orderSplit.get(i),id) && arrayContains(orderSplit.get(i),id2)) {
+			    currentDistance = Math.abs(stops(stop1,stop2,orderSplit.get(i)[0]));
+			    if (currentDistance < distance || (currentDistance == distance && Math.random() > 0.5)) { //the or statement allows the program to randomize the result when the route is the same for multiple trains, so it doesn't return the same train every time when there are multiple possible trains that you can take
+				distance = currentDistance;
+				direction = direction(stop1, stop2, orderSplit.get(i)[0]);
+				//trainIndex: the train that will be taken
+				trainIndex = i;
+				//id1 and idTwo (id2 is already used): IDs of the stations being used (again, this is necessary because of repeat station names but different IDs)
+				id1 = id;
+				idTwo = id2;
+				}
+			}
+		    }
+		}
+	    }
+	    if (trainIndex == -1) {
+		throw new StopsNotOnSameLineException("These stations are not served by a single train; please wait for in-station transfers to be supported. Thank you for your cooperation.");
+	    }
+	    if (distance == 0) {
+		throw new SameStopInputException("Please insert two differerent station names. If you are looking for a crosstown route, please take a crosstown bus. Crosstown bus routes can be found at www.mta.info.");
+	    }
+	    //section 2 of this method: this prints the route. we thought that there are too many variables from section 1 needed in section 2 for this to be put in a separate method.
+	    //System.out.println(Arrays.toString(orderSplit.get(trainIndex)));
+	    String[] trainStops = removeTrainName(orderSplit.get(trainIndex));
+	    //because we're crazy perfectionists, this is necessary
+	    String verbTense = "";
+	    if (distance == 1) {
+		verbTense = "</strong> stop <strong>";
+	    }
+	    else {
+		verbTense = "</strong> stops <strong>";
+	    }
+	    //prints starting station
+	    ans += "<br>  1. Start at <strong>" + stop1 + "</strong>.<br>";
+	    //prints which train to take, sets up the printing of the intermediate stops
+	    ans += "2. Take the <strong>" + orderSplit.get(trainIndex)[0] + "</strong> train <strong>" + distance + verbTense + direction + "</strong>.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Intermediate Stops:";
+	    //the next loop prints intermediate stops, or the stops between the starting stop and the destination stop. there are two loops: a forward loop for uptown and a backward loop for downtown.
+	    //forward loop for uptown	
+	    if (direction.equals("uptown")) {
+		int l = 1;
+		while (arrayIndex(trainStops,id1)+l-1 <= arrayIndex(trainStops,idTwo)-1) {
+		    ans += "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + IDtoStation(trainStops[arrayIndex(trainStops,id1)+l]);
+		    l++;
+		}
+	    }
+	    //backward loop for downtown
+	    else {
+		int m = -1;
+		while (arrayIndex(trainStops,id1)+m-1 >= arrayIndex(trainStops,idTwo)-1) {
+		    //System.out.println(Arrays.toString(trainStops));
+		    ans += "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + IDtoStation(trainStops[arrayIndex(trainStops,id1)+m]);
+		    m--;
+		}
+	    }
+	    ans += "<br>";
+	    //prints destination startion
+	    
+	    ans += "3. Arrive at <strong>" + stop2 + "</strong>.<br>";
+	    return ans;
+    }
+    catch (NoSuchTrainException e) {
+	throw new NoSuchTrainException("These stations are not served by an MTA station in Manhattan. Please insert a real station.");
+	}
+    }
     
     public String directions(String stop1, String stop2,boolean transfer,boolean transferred) {
 	String ans = "";
@@ -498,46 +577,11 @@ public class CSVRoute {
 	}
 	return result;
     }
-
-    public String directions3(String sstation,String estation){
-	String sID = stationToID(sstation).get(0);
-	String eID = stationToID(estation).get(0);
-	String[][] stops = transfers();
-	String[] starts = new String[stops.length];
-	//String[] ends = new String[stops.length];
-	int slength = 0;
-	for(int i = 0; i < stops.length; i++){
-	    if(combinedLines(sID,stops[i][0]).size() > 0){
-		starts[slength] = stops[i][0];
-		slength++;
-	    }
-	}
-	starts = Arrays.copyOf(starts,slength);
-	System.out.println("");
-
-	String[] transfers = new String[starts.length];
-	int tlength = 0;
-	
-	for(int i = 0; i < starts.length; i++){
-	    if(combinedLines(starts[i],eID).size() > 0){
-		transfers[tlength] = starts[i];
-		tlength++;
-	    }
-	}
-	if(tlength == 0){
-	    throw new StopsNotOnSameLineException();
-	}
-	transfers = Arrays.copyOf(transfers,tlength);
-	
-	String tstation = IDtoStation(transfers[0]);
-	
-	return directions(sstation,tstation,false) + directions(tstation,estation,true);
-    }
     
     public static void main(String[] args) {
 	CSVRoute csv = new CSVRoute();
-	/*
-	System.out.println(csv.directions("Chambers St","96 St",false));
+
+	System.out.println(csv.directions("Chambers St","96 St",false,false));
 	
 	ArrayList<String> b = csv.combinedLines("13A","47"); //Times Square 42nd and Grand Central
 	System.out.println(Arrays.toString(b.toArray()));
@@ -557,21 +601,11 @@ public class CSVRoute {
 	int[] d = csv.stationToLines2("13A");
 	System.out.println(Arrays.toString(d));
 	System.out.println("");
-
-	System.out.println(csv.nextTransfer("47","3"));
-	System.out.println(csv.directions2("47","3") + "\n");
-	System.out.println(csv.directions2("8A","47") + "\n");
-	System.out.println(csv.directions2("60","107") + "\n");
-
 	System.out.println(csv.fastestLines("28","77"));
 	System.out.println("");
 	//System.out.println(csv.nextTransfer("20","77"));
 	System.out.println("");
 	System.out.println("");
 	System.out.println(csv.directions2("96 St","Inwood - 207 St") + "\n");
-	*/
-	System.out.println(csv.directions3("34 St - Hudson Yards","Chambers St")+"\n");
-	System.out.println(csv.directions3("72 St","34 St - Herald Square")+"\n");
-	System.out.println(csv.directions3("96 St","Inwood - 207 St"));
     }
 }

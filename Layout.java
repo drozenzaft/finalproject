@@ -109,7 +109,8 @@ public class Layout extends JFrame implements ActionListener{
 	    try{
 		if(csv.combinedLines(start,end).size() == 0){
 		    route.setText("<html>DIRECTIONS:<br>" +
-				  csv.directions(start,end,false));
+				  csv.directions(start,end,false,false)
+				  + "</html>");
 		}else{
 		    route.setText("<html>DIRECTIONS:<br>" +
 				  csv.directions2(start,end)+"</html>");

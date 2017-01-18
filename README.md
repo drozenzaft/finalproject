@@ -22,6 +22,6 @@ List of Unresolved Bugs:
 <li>GUI label for directions won't resize because of the scroll bar unless there is enough room for the entire text to fit</li>
 </ul><br>
 Directions:<br>
-Both Layout.java must be compiled. Running Layout will produce a GUI (resize as needed), where the user can input the start and end stations (for a list of station names [which need to be exactly as they are in the data file], type "cat data.csv" in the terminal). In case it isn't clear, the "SWITCH" button reverses the start and end stations, and "CALCULATE" produces directions for the route.
+Layout.java must be compiled. Running Layout will produce a GUI (resize as needed), where the user can input the start and end stations (for a list of station names [which need to be typed exactly as they are in the data file], type "cat data.csv" in the terminal). In case it isn't clear, the "SWITCH" button reverses the start and end stations, and "CALCULATE" produces directions for the route.
 
 

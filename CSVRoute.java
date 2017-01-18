@@ -577,10 +577,45 @@ public class CSVRoute {
 	}
 	return result;
     }
+
+    public String directions3(String sstation,String estation){
+	String sID = stationToID(sstation).get(0);
+	String eID = stationToID(estation).get(0);
+	String[][] stops = transfers();
+	String[] starts = new String[stops.length];
+	//String[] ends = new String[stops.length];
+	int slength = 0;
+	for(int i = 0; i < stops.length; i++){
+	    if(combinedLines(sID,stops[i][0]).size() > 0){
+		starts[slength] = stops[i][0];
+		slength++;
+	    }
+	}
+	starts = Arrays.copyOf(starts,slength);
+	System.out.println("");
+
+	String[] transfers = new String[starts.length];
+	int tlength = 0;
+	
+	for(int i = 0; i < starts.length; i++){
+	    if(combinedLines(starts[i],eID).size() > 0){
+		transfers[tlength] = starts[i];
+		tlength++;
+	    }
+	}
+	if(tlength == 0){
+	    throw new StopsNotOnSameLineException();
+	}
+	transfers = Arrays.copyOf(transfers,tlength);
+	
+	String tstation = IDtoStation(transfers[0]);
+	
+	return directions(sstation,tstation,false,false) + directions(tstation,estation,true,true);
+    }
     
     public static void main(String[] args) {
 	CSVRoute csv = new CSVRoute();
-
+	/*
 	System.out.println(csv.directions("Chambers St","96 St",false,false));
 	
 	ArrayList<String> b = csv.combinedLines("13A","47"); //Times Square 42nd and Grand Central
@@ -601,11 +636,16 @@ public class CSVRoute {
 	int[] d = csv.stationToLines2("13A");
 	System.out.println(Arrays.toString(d));
 	System.out.println("");
+
 	System.out.println(csv.fastestLines("28","77"));
 	System.out.println("");
 	//System.out.println(csv.nextTransfer("20","77"));
 	System.out.println("");
 	System.out.println("");
 	System.out.println(csv.directions2("96 St","Inwood - 207 St") + "\n");
+	*/
+	System.out.println(csv.directions3("34 St - Hudson Yards","Chambers St")+"\n");
+	System.out.println(csv.directions3("72 St","34 St - Herald Square")+"\n");
+	System.out.println(csv.directions3("96 St","Inwood - 207 St"));
     }
 }

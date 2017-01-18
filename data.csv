@@ -1,19 +1,16 @@
 1,South Ferry
-1A,Whitehall St
 2,Rector St
 3,Chambers St
 4,Franklin St
 5,Canal St
 6,Houston St
 7,Christopher St - Sheridan Square
-8A,14 St
-8B,6 Av
+8,14 St
 9,18 St
 10,23 St
 11,28 St
 12,34 St - Penn Station
-13A,Times Square - 42 St
-13B,42 St - Port Authority Bus Terminal
+13,Times Square - 42 St
 14,50 St
 15,59 St - Columbus Circle
 16,66 St - Lincoln Center
@@ -36,9 +33,7 @@
 33,215 St
 34,Wall St
 35,Fulton St
-36A,Park Place
-36B,Chambers St
-36C,World Trade Center
+36,Park Place
 37,110 St - Central Park North
 38,116 St
 39,125 St
@@ -47,24 +42,20 @@
 42,Harlem - 148 St
 43,Bowling Green
 44,Wall St
-45A,Brooklyn Bridge - City Hall
-45B,Chambers St
+45,Brooklyn Bridge - City Hall
 46,14 St - Union Square
 47,42 St - Grand Central
-48A,59 St
-48B,Lexington Av - 59 St
+48,59 St
 49,86 St
 50,125 St
 51,Canal St
 52,Spring St
-53A,Bleecker St
-53B,Broadway - Lafayette St
+53,Broadway - Lafayette St
 54,Astor Place
 55,23 St
 56,28 St
 57,33 St
-58A,51 St
-58B,Lexington Av - 53 St
+58,Lexington Av - 53 St
 59,68 St - Hunter College
 60,77 St
 61,96 St
@@ -72,8 +63,7 @@
 63,110 St
 64,116 St
 65,34 St - Hudson Yards
-66A,5 Av
-66B,42 St - Bryant Park
+66,42 St - Bryant Park
 67,Canal St
 68,West 4 St - Washington Square
 69,14 St

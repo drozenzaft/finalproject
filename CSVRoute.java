@@ -482,12 +482,12 @@ public class CSVRoute {
 	
 	String tstation = IDtoStation(transfers[0]);
 	
-	return directions(sstation,tstation,false,false) + directions(tstation,estation,false,true);
+	return directions(sstation,tstation,false) + directions(tstation,estation,true);
     }
     
     public static void main(String[] args) {
 	CSVRoute csv = new CSVRoute();
-
+	/*
 	System.out.println(csv.directions("Chambers St","96 St",false));
 	
 	ArrayList<String> b = csv.combinedLines("13A","47"); //Times Square 42nd and Grand Central
@@ -535,7 +535,7 @@ public class CSVRoute {
 	System.out.println("");
 	System.out.println("");
 	System.out.println(csv.directions2("96 St","Inwood - 207 St") + "\n");
-
+	*/
 	System.out.println(csv.directions3("34 St - Hudson Yards","Chambers St")+"\n");
 	System.out.println(csv.directions3("72 St","34 St - Herald Square")+"\n");
 	System.out.println(csv.directions3("96 St","Inwood - 207 St"));

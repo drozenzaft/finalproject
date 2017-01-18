@@ -447,7 +447,7 @@ public class CSVRoute {
     }
     //String[] of the line names in orderSplit; first element is stationID
     public String[] stationToLines3(String ID){
-	String[] lines = new String[10];
+	String[] lines = new String[orderSplit.size()];
 	lines[0] = ID;
 	int length = 1;
 	for(int i = 0; i < orderSplit.size(); i++){

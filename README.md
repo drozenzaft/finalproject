@@ -15,6 +15,7 @@ List of Working Features:
 List of Unresolved Bugs:
 <ul>
 <li>transfers and regular directions for stations with repeat names (ex: 23 St) or stations with multiple names (ex: Park Place, World Trade Center, and Chambers St) don't always work>/li>
+<li>stops with multiple lines stopping at them are much more unstable than others, so Times Square - 42 St may be a little bit wonky</li>
 <li>for a few of the transfers that do work, some of the directions give very long routes instead of the simplest ones</li>
 <li>exact station name must be given (cat data.csv for the names)</li>
 <li>asking for a route when there is no input in the GUI spews a bunch of error messages in the terminal (doesn't really matter if you only look at the GUI though)</li>

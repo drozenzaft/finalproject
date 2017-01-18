@@ -610,7 +610,7 @@ public class CSVRoute {
 	
 	String tstation = IDtoStation(transfers[0]);
 	
-	return directions(sstation,tstation,false) + directions(tstation,estation,true);
+	return directions(sstation,tstation,false,false) + directions(tstation,estation,true,true);
     }
     
     public static void main(String[] args) {
